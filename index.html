@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        body {
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var canvas;
+        var ctx;
+        var chessData = new Array(15);//这个为棋盘的二维数组用来保存棋盘信息，初始化0为没有走过的，1为白棋走的，2为黑棋走的
+        var isWhite = true;//设置是否该轮到白棋
+        // var isWell = false;//设置该局棋盘是否赢了，如果赢了就不能再走了
+        var img_b = new Image();
+        img_b.src = "images/b.png";//白棋图片
+
+        for (var x = 0; x < 15; x++) {
+            chessData[x] = new Array(15);
+            for (var y = 0; y < 15; y++) {
+                chessData[x][y] = 0;
+            }
+        }
+
+        function drawRect() {//页面加载完毕调用函数，初始化棋盘
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            for (var i = 0; i <= 640; i += 40) {//绘制棋盘的线
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(640, i);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, 640);
+                ctx.closePath();
+                ctx.stroke();
+            }
+        }
+
+
+        function play(e) {//鼠标点击时发生
+            // var x = parseInt((e.clientX - 20) / 40);//计算鼠标点击的区域，如果点击了（65，65），那么就是点击了（1，1）的位置
+            // var y = parseInt((e.clientY - 20) / 40); 
+            console.log(e.clientX);
+            console.log(e.clientY);
+            var x = parseInt((e.clientX - 20) / 40);
+            var y = parseInt((e.clientY - 20) / 40); 
+            if (chessData[x][y] != 0) {//判断该位置是否被下过了
+                // alert("你不能在这个位置下棋");
+                clearChess(x, y);
+                return;
+            } 
+
+            // if (isWhite) {
+                // isWhite = false;
+                drawChess(1, x, y);
+            // }
+
+            // else {
+            //     isWhite = true;
+            //     drawChess(2, x, y);
+            // } 
+        }
+
+        function drawChess(chess, x, y) {//参数为，棋（1为白棋，2为黑棋），数组位置
+            // if (isWell == true) {
+            //     alert("已经结束了，如果需要重新玩，请刷新");
+            //     return;
+            // }
+
+            if (x >= 0 && x < 15 && y >= 0 && y < 15) {
+                if (chess == 1) {
+                    ctx.drawImage(img_b, x * 40, y * 40);//绘制白棋
+                    chessData[x][y] = 1;
+                }
+
+/*                else {
+                    ctx.drawImage(img_w, x * 40, y * 40);
+                    chessData[x][y] = 2;
+                }*/
+            }
+        }
+
+        function clearChess(x, y) {
+            ctx.fillStyle="#fff";
+            ctx.fillRect(x * 40  + 1, y * 40 + 1, 38, 38);
+            chessData[x][y] = 0;
+        }
+    </script>
+
+</head>
+<body onload="drawRect()">
+    <div>
+        <canvas width="640" id="canvas" onmousedown="play(event)" height="640">你的浏览器不支持HTML5 canvas  ，请使用 google chrome 浏览器 打开.
+        </canvas>
+<!-- 
+五子棋棋盘落子点对应的二维数组。数组的元素对应落子点。比如数组元素值为0表示该元素对应的落子点没有棋子，数组元素值为1表示该元素对应的落子点有白棋子，数组元素值为2表示该元素对应的落子点有黑棋子；
+
+ 判断五子棋赢棋的算法是通过对五子棋棋盘落子点对应的二维数组的操作来实现的。
+
+ 判断五子棋赢棋算法
+
+下边的函数可以实现判断五子棋赢棋的算法，也可以按照教材中相应的算法实现。
+
+其中函数的参数xx.yy为数组下标，chess数组实现五子棋棋盘落子点的数据结构映射。
+
+算法的思想方法是：以当前落子点对应的下标为基点，向其周围8个方向进行搜索，如果有同色子连五子，返回1，或2，否则返回0。返回1代表白棋方胜，返回2代表黑棋方胜。返回0代表没有发生赢棋数据结构状态。
+ -->
+    </div>
+</body>
+</html>
