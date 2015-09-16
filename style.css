@@ -1,0 +1,58 @@
+body {
+    margin: 10px;
+    background: #ddd;
+}
+
+.menu {
+	width: 300px;
+	float: left;
+}
+.colorPicker {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.colorPicker li {
+	margin-bottom: 10px;
+	overflow: auto;
+}
+.colors {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-right: 10px;
+	border-radius: 20px;
+}
+.colors:hover {
+	cursor: pointer;
+}
+#colors-black {
+	background: #000;
+}
+#colors-white {
+	background: #FFF;
+}
+#colors-red1 {
+	background: #891C45;
+}
+#colors-red2 {
+	background: #BA1010;
+}
+#colors-red3 {
+	background: #ff0000;
+}
+#colors-red4 {
+	background: #F99191;
+}
+#colors-red5 {
+	background: #F9BDBD;
+}
+#colors-red6 {
+	background: #F5D0D0;
+}
+
+
+
+#canvas {
+	float: left;
+}
