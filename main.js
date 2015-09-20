@@ -1,6 +1,7 @@
     var canvas, ctx;
     var circleData = new Array(15); //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
-    var circleColor = "fff"; // 默认颜色为白色
+    var circleColor = "#fff"; // 默认颜色为白色
+    var curr_color_box = O("#colors_white").parent().son(".color_count");
 
     /*
      *  设置与画布对应的二维数组
@@ -38,19 +39,21 @@
     function play(e) { //鼠标点击时发生
         var x = parseInt(e.offsetX / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt(e.offsetY / 40);
+
         if (circleData[x][y] != 0) { //判断该位置是否被下过了
             clearCircle(x, y);
             return;
         }
 
         drawCircle(x, y);
-
     }
 
     /*
      *  绘制拼豆
      */
     function drawCircle(x, y) { //参数为：数组位置
+        var count;
+
         if (x >= 0 && x < 15 && y >= 0 && y < 15) {
             ctx.fillStyle = circleColor;
             ctx.beginPath();
@@ -59,15 +62,23 @@
             ctx.fill();
             circleData[x][y] = 1;
         }
+
+        count = parseInt(curr_color_box.html()) + 1;
+        curr_color_box.html(count);
     }
 
     /*
      *  清除拼豆
      */
     function clearCircle(x, y) {
+        var count;
+
         ctx.fillStyle="#ddd";
         ctx.fillRect(x * 40  + 1, y * 40 + 1, 38, 38);
         circleData[x][y] = 0;
+
+        count = parseInt(curr_color_box.html()) - 1;
+        curr_color_box.html(count);
     }
 
     /*
@@ -75,6 +86,7 @@
      */
     O(".colors").click(function(){
         circleColor = Oct.rgbToHex(O(this).getCss("background-color"));
+        curr_color_box = O(this).parent().son(".color_count");
     });
 
     /*

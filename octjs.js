@@ -137,11 +137,15 @@
 		},
 
 		html: function(text) {
-			this.each(function(eles) {
-				// Warning: dont use "this.elements", use "eles"
-				eles.innerHTML = text;
-			});
-	    return this;
+			if (arguments.length === 0) {
+				return this.elements[0].innerHTML;
+			} else if (arguments.length === 1) {
+				this.each(function(eles) {
+					// Warning: dont use "this.elements", use "eles"
+					eles.innerHTML = text;
+				});
+				return this;
+			}	    
 		},
 
 		add: function(str) {
@@ -376,7 +380,7 @@
 
 		width: function() {
 			if (arguments.length === 0) {
-				return this.getCss("s");
+				return this.getCss("width").toString();
 			} else if (arguments.length === 1) {
 				this.setCss({"width": arguments[1]});
 				return this;

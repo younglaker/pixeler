@@ -26,31 +26,40 @@ body {
 .colors:hover {
 	cursor: pointer;
 }
-#colors-black {
+.color_box {
+	width: 25px;
+	float: left;
+	margin-right: 10px;
+}
+#colors_black {
 	background: #000;
 }
-#colors-white {
+#colors_white {
 	background: #FFF;
 }
-#colors-red1 {
+#colors_red1 {
 	background: #891C45;
 }
-#colors-red2 {
+#colors_red2 {
 	background: #BA1010;
 }
-#colors-red3 {
+#colors_red3 {
 	background: #ff0000;
 }
-#colors-red4 {
+#colors_red4 {
 	background: #F99191;
 }
-#colors-red5 {
+#colors_red5 {
 	background: #F9BDBD;
 }
-#colors-red6 {
+#colors_red6 {
 	background: #F5D0D0;
 }
-
+.color_count {
+	width: 100%;
+	float: left;
+	text-align: center;
+}
 
 
 #canvas {
