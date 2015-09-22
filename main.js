@@ -1,7 +1,8 @@
     var canvas, ctx;
     var circleData = new Array(15); //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
     var circleColor = "#fff"; // 默认颜色为白色
-    var curr_color_box = O("#colors_white").parent().son(".color_count");
+    var curr_color_box = O("#color_cnt_white");
+    var curr_color_id = O("#color_cnt_white").getAttr("id");
 
     /*
      *  设置与画布对应的二维数组
@@ -60,9 +61,10 @@
             ctx.arc(x * 40 + 20, y * 40 + 20, 15, 0, Math.PI*2, true);
             ctx.closePath();
             ctx.fill();
-            circleData[x][y] = 1;
+            // 所记录的颜色计数标签id
+            circleData[x][y] = curr_color_id;
         }
-
+        // 计数加1
         count = parseInt(curr_color_box.html()) + 1;
         curr_color_box.html(count);
     }
@@ -72,13 +74,15 @@
      */
     function clearCircle(x, y) {
         var count;
-
+        var del_color = O("#" + circleData[x][y]);
+        // 清除拼豆
         ctx.fillStyle="#ddd";
         ctx.fillRect(x * 40  + 1, y * 40 + 1, 38, 38);
+        // 计数减1
+        count = parseInt(del_color.html()) - 1;
+        del_color.html(count);
+        // 清除circleData所记录的颜色计数标签id
         circleData[x][y] = 0;
-
-        count = parseInt(curr_color_box.html()) - 1;
-        curr_color_box.html(count);
     }
 
     /*
@@ -87,6 +91,7 @@
     O(".colors").click(function(){
         circleColor = Oct.rgbToHex(O(this).getCss("background-color"));
         curr_color_box = O(this).parent().son(".color_count");
+        curr_color_id = curr_color_box.getAttr("id");
     });
 
     /*
