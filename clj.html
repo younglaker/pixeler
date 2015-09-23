@@ -3,30 +3,70 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="clj.css" />
     <script type="text/javascript" src="octjs.js"></script>
 </head>
-<body onload="drawRect()">
+<body onload="drawRect(11, 9)">
     <div class="menu">
-        <ul class="colorPicker">
+        <ul class="color_picker">
+           <h2>请选择颜色：</h2>
             <li>
-                <div class="colors" id="colors-black"></div>
-                <div class="colors" id="colors-white"></div>
+                <div class="color_box">
+                    <div class="colors" id="colors_black"></div>
+                    <div class="color_count" id="color_cnt_black">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_white"></div>
+                    <div class="color_count" id="color_cnt_white">0</div>
+                </div>
             </li>
             <li>
-                <div class="colors" id="colors-red1"></div>
-                <div class="colors" id="colors-red2"></div>
-                <div class="colors" id="colors-red3"></div>
-                <div class="colors" id="colors-red4"></div>
-                <div class="colors" id="colors-red5"></div>
-                <div class="colors" id="colors-red6"></div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red1"></div>
+                    <div class="color_count" id="color_cnt_red1">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red2"></div>
+                    <div class="color_count" id="color_cnt_red2">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red3"></div>
+                    <div class="color_count" id="color_cnt_red3">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red4"></div>
+                    <div class="color_count" id="color_cnt_red4">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red5"></div>
+                    <div class="color_count" id="color_cnt_red5">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_red6"></div>
+                    <div class="color_count" id="color_cnt_red6">0</div>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="siser">
+            <li>
+                <div class="siser_btn act">11 * 9</div>
+                <div class="siser_btn">9 * 11</div>
+            </li>
+            <li>
+                <div class="siser_btn">8 * 6</div>
+                <div class="siser_btn">6 * 8</div>
+            </li>
+            <li>
+                <div class="siser_btn">6 * 3</div>
+                <div class="siser_btn">3 * 6</div>
             </li>
         </ul>
     </div>
     <div>
-        <canvas width="640" id="canvas" height="640">您的浏览器不支持 HTML5 canvas  ，请使用 google chrome 浏览器打开.
+        <canvas width="640" id="canvas" height="640">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
         </canvas>
     </div>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="clj.js"></script>
 </body>
 </html>

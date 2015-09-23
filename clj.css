@@ -77,3 +77,15 @@ h2 {
 	float: left;
 }
 
+.siser_btn {
+    float: left;
+    padding: 1px 10px;
+    background: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.act {
+    background: #60c0df;
+    color: #fff;
+}
