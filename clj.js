@@ -49,9 +49,10 @@
      *  寻找点击位置
      */
     function play(e) { //鼠标点击时发生
-        var x = parseInt(e.offsetX / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
-        var y = parseInt(e.offsetY / 40);
-
+        var x = parseInt((e.offsetX-20) / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
+        var y = parseInt((e.offsetY-20) / 40);
+console.log(x);
+console.log(y);
         if (circleData[x][y] != 0) { //判断该位置是否被下过了
             clearCircle(x, y);
             return;
@@ -69,7 +70,7 @@
         if (x >= 0 && x < 15 && y >= 0 && y < 15) {
             ctx.fillStyle = circleColor;
             ctx.beginPath();
-            ctx.arc(x * 40 + 20, y * 40 + 20, 15, 0, Math.PI*2, true);
+            ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
             ctx.closePath();
             ctx.fill();
             // 所记录的颜色计数标签id
@@ -87,8 +88,11 @@
         var count;
         var del_color = O("#" + circleData[x][y]);
         // 清除拼豆
-        ctx.fillStyle="#ddd";
-        ctx.fillRect(x * 40  + 1, y * 40 + 1, 38, 38);
+        ctx.fillStyle = "#ddd";
+        ctx.beginPath();
+        ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
         // 计数减1
         count = parseInt(del_color.html()) - 1;
         del_color.html(count);
