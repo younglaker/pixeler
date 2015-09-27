@@ -400,7 +400,7 @@
 			if (arguments.length === 0) {
 
 				// Because "getCss" "setCss" is function of "Oct" object, so must use "this"(a Oct object) to call them, not "this.elements"
-				return this.getCss("height");
+				return this.getCss("height").toString();
 			} else if (arguments.length === 1) {
 				this.setCss({height: arguments[1]});
 				return this;
@@ -577,8 +577,7 @@ console.log(this.elements);
 				this.each(function(eles) {
 					curr = eles.firstElementChild;
 					sons.push(curr);
-
-					while (curr.nextElementSibling) {
+					while (curr.nextElementSibling != null) {
 						curr = curr.nextElementSibling;
 						sons.push(curr);
 					}

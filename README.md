@@ -4,15 +4,19 @@ A website to design pixel picture, based on HTML5 canvas.
 
 ## Version
 
-### V0.3 20150921
+### 20150927
+clj.htm：改变行列数
+clj.htm: Change the row and column.  
+
+### 20150921
 拼豆计数。  
 Count the color.
 
-### V0.2 20150916
+### 20150916
 能更换拼豆颜色。  
 Change the color.
 
-### V0.1 20150911
+### 20150911
 实现绘制、清除拼豆。  
 Draw and clear pixels.
 

@@ -1,11 +1,10 @@
-    var canvascanvas = document.getElementById("canvas");
+    var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     var circleData = []; //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
     var grid_width = 40; // 画布格子宽度
     var circleColor = "#fff"; // 默认颜色为白色
     var curr_color_box = O("#color_cnt_white");
     var curr_color_id = O("#color_cnt_white").getAttr("id");
-
 
     /*
      *  绘制画布
@@ -18,6 +17,7 @@
         // i从20开始，是为了留位置显示坐标
         for (var i = 20; i <= y_width + 20; i += grid_width) {  //绘制行
             ctx.beginPath();
+            ctx.fillStyle = "#000";
             ctx.fillText((i - 20 ) / grid_width, 0, i - 20);
             ctx.moveTo(20, i);
             ctx.lineTo(x_width + 20, i);
@@ -37,12 +37,15 @@
 
         // 设置与画布对应的二维数组
         circleData = [];
-        for (var x = 0; x < row; x++) {
+        for (var x = 0; x < col; x++) {
             circleData[x] = [];
-            for (var y = 0; y < col; y++) {
+            for (var y = 0; y < row; y++) {
                 circleData[x][y] = 0;
             }
         }
+
+        // 把颜色计数全部清空
+        O(".color_count").html("0");
     }
 
     /*
@@ -51,8 +54,7 @@
     function play(e) { //鼠标点击时发生
         var x = parseInt((e.offsetX-20) / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt((e.offsetY-20) / 40);
-console.log(x);
-console.log(y);
+
         if (circleData[x][y] != 0) { //判断该位置是否被下过了
             clearCircle(x, y);
             return;
@@ -114,4 +116,24 @@ console.log(y);
      */
     O("#canvas").mousedown(function(e){
         play(e);
+    });
+
+    /*
+     *  更换画布大小
+     */
+    O(".siser_btn").click(function(){
+        // size:按钮的文字; row:行数; col:列数
+        var size, row, col;
+        var ds = this;
+        // 清除原来含有.act的按钮
+        O(this).add(".act").parent().parent().son("&li").son(".siser_btn").remove(".act");
+        // 给当前大小按钮加.act
+        O(ds).add(".act");
+        // 获取行列大小
+        size = O(ds).html().match(/\d+/g);
+        col = parseInt(size[0]);
+        row = parseInt(size[1]);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRect(col, row);
     });
