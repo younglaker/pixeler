@@ -109,6 +109,14 @@
         circleColor = Oct.rgbToHex(O(this).getCss("background-color"));
         curr_color_box = O(this).parent().son(".color_count");
         curr_color_id = curr_color_box.getAttr("id");
+
+        var ds = this;
+        console.log("message");
+        console.log(ds);
+        // 清除原来含有.act的按钮
+        O(this).parent().parent().parent().son("&li").son(".color_box").remove(".act");
+        // 给当前大小按钮加.act
+        O(ds).parent().add(".act");
     });
 
     /*
@@ -126,7 +134,7 @@
         var size, row, col;
         var ds = this;
         // 清除原来含有.act的按钮
-        O(this).add(".act").parent().parent().son("&li").son(".siser_btn").remove(".act");
+        O(this).parent().parent().son("&li").son(".siser_btn").remove(".act");
         // 给当前大小按钮加.act
         O(ds).add(".act");
         // 获取行列大小
