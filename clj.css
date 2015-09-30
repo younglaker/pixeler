@@ -10,8 +10,8 @@ h2 {
 	float: left;
 	margin-right: 30px
 }
-.color_picker, .siser {
-    width: 300px;
+.color_picker, .siser, .help, .contact {
+	width: 300px;
 	margin: 0 0 20px;
 	padding: 10px;
 	list-style: none;
