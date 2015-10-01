@@ -4,6 +4,10 @@ A website to design pixel picture, based on HTML5 canvas.
 
 ## Version
 
+### 20151001
+clj.htm：Add all color.Add help and contact block.
+clj.htm：添加所有颜色的拼豆，新增帮助和联系。
+
 ### 20150927
 clj.htm：改变行列数
 clj.htm: Change the row and column.  
@@ -21,8 +25,10 @@ Change the color.
 Draw and clear pixels.
 
 
-## To- [ ]Do
+## To-Do
 
+- [ ] 用纸的截图替换色块
+- [ ] hover更换布局时，显示实际盒子样式
 - [ ] 更换布局的清空提示
 - [ ] 清空画布
 - [ ] 颜色选择改用取色器
