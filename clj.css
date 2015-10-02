@@ -6,13 +6,26 @@ h2 {
     font-size: 16px;
 }
 
-.menu {
-	float: left;
-	margin-right: 30px
-}
-.color_picker, .siser, .help, .contact {
+.menu, .menu2 {
 	width: 300px;
-	margin: 0 0 20px;
+	position: absolute;
+	top: 15px;
+}
+.menu {
+/* 	float: left;
+margin-right: 30px; */
+	left: 15px;
+}
+.menu2 {
+	right: 15px;
+}
+.main {
+	margin: 25px 320px 0 320px;
+}
+.menu_ul {
+	box-sizing: border-box;
+	width: 300px;
+	margin: 0 0 15px 0;
 	padding: 10px;
 	list-style: none;
     border: 1px #a2a8a8 solid;
@@ -23,17 +36,16 @@ h2 {
 	overflow: auto;
 }
 .colors {
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	float: left;
-	margin-right: 10px;
 	border-radius: 20px;
 }
 .colors:hover {
 	cursor: pointer;
 }
 .color_box {
-	width: 30px;
+	width: 25px;
 	float: left;
 	margin-right: 10px;
 	padding: 5px;
@@ -117,9 +129,12 @@ h2 {
 	text-align: center;
 }
 
-
 #canvas {
-	float: left;
+  margin: 0 auto;
+  display: block;
+}
+.clear_canvas {
+	display: block;
 }
 
 .siser_btn {

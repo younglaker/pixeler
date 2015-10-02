@@ -2,11 +2,15 @@
 一个用于设计像素图片（拼豆）的应用。用HTML5 canvas开发。  
 A website to design pixel picture, based on HTML5 canvas.
 
-## Version
+## Change log
 
 ### 20151001
-clj.htm：Add all color.Add help and contact block.
+clj.htm：三栏布局。
+clj.htm：New layout.
+
+### 20151001
 clj.htm：添加所有颜色的拼豆，新增帮助和联系。
+clj.htm：Add all color.Add help and contact block.
 
 ### 20150927
 clj.htm：改变行列数

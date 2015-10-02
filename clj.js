@@ -5,12 +5,13 @@
     var circleColor = "#fff"; // 默认颜色为白色
     var curr_color_box = O("#color_cnt_white");
     var curr_color_id = O("#color_cnt_white").getAttr("id");
+    var row = 9, col = 11;
 
     /*
      *  绘制画布
      *  页面加载完毕调用函数，初始化画布
      */
-    function drawRect(col, row) {  // row:行数，col:列数
+    function drawRect() {  // row:行数，col:列数
         var x_width = col * grid_width,
             y_width = row * grid_width;
 
@@ -92,7 +93,7 @@
         // 清除拼豆
         ctx.fillStyle = "#ddd";
         ctx.beginPath();
-        ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
+        ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.fill();
         // 计数减1
@@ -100,6 +101,13 @@
         del_color.html(count);
         // 清除circleData所记录的颜色计数标签id
         circleData[x][y] = 0;
+    }
+
+    /*
+     *  清除拼豆
+     */
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   
     }
 
     /*
@@ -131,7 +139,7 @@
      */
     O(".siser_btn").click(function(){
         // size:按钮的文字; row:行数; col:列数
-        var size, row, col;
+        var size;
         var ds = this;
         // 清除原来含有.act的按钮
         O(this).parent().parent().son("&li").son(".siser_btn").remove(".act");
@@ -143,5 +151,10 @@
         row = parseInt(size[1]);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRect(col, row);
+    });
+
+    O(".clear_canvas").click(function(){
+        clearCanvas();
         drawRect(col, row);
     });

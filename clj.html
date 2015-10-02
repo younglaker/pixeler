@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="clj.css" />
     <script type="text/javascript" src="octjs.js"></script>
 </head>
-<body onload="drawRect(11, 9)">
+<body onload="drawRect()">
     <div class="menu">
-        <ul class="color_picker">
+        <ul class="color_picker menu_ul">
            <h2>请选择颜色：</h2>
             <li>
                 <div class="color_box act">
@@ -114,7 +114,7 @@
             </li>
         </ul>
 
-        <ul class="siser">
+        <ul class="siser menu_ul">
             <h2>请选择画布尺寸（长*宽）：</h2>
             <li>
                 <div class="siser_btn act">11 * 9</div>
@@ -130,7 +130,18 @@
             </li>
         </ul>
 
-        <ul class="help">
+    </div>
+    <div class="main">
+        <canvas id="canvas" width="550" height="500">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
+        </canvas>
+    </div>
+
+    <div class="menu2">
+        <div class="control menu_ul">
+            <button class="clear_canvas">清空画布</button>
+        </div>
+
+        <ul class="help menu_ul">
             <h2>帮助：</h2>
             <li>此应用为创礼记玫瑰花礼盒样式设计</li>
             <li>选择所需要的颜色、布局，在画布中选择设计拼豆</li>
@@ -139,15 +150,12 @@
             <li>功能不断完善中，期待更多~</li>
         </ul>
 
-        <ul class="contact">
+        <ul class="contact menu_ul">
             <h2>联系：</h2>
             <li>微店：<a href="http://weidian.com/?userid=212261168">创礼记</a></li>
             <li>微信：younglaker8</li>
         </ul>
-    </div>
-    <div class="canvas_block">
-        <canvas width="640" id="canvas" height="640">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
-        </canvas>
+
     </div>
     <script type="text/javascript" src="clj.js"></script>
 </body>
