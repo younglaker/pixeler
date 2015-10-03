@@ -7,9 +7,10 @@ h2 {
 }
 
 .menu, .menu2 {
-	width: 300px;
+	width: 23%;
 	position: absolute;
 	top: 15px;
+	z-index: -1;
 }
 .menu {
 /* 	float: left;
@@ -24,7 +25,7 @@ margin-right: 30px; */
 }
 .menu_ul {
 	box-sizing: border-box;
-	width: 300px;
+	width: 100%;
 	margin: 0 0 15px 0;
 	padding: 10px;
 	list-style: none;

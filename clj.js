@@ -119,8 +119,6 @@
         curr_color_id = curr_color_box.getAttr("id");
 
         var ds = this;
-        console.log("message");
-        console.log(ds);
         // 清除原来含有.act的按钮
         O(this).parent().parent().parent().son("&li").son(".color_box").remove(".act");
         // 给当前大小按钮加.act
@@ -138,23 +136,33 @@
      *  更换画布大小
      */
     O(".siser_btn").click(function(){
-        // size:按钮的文字; row:行数; col:列数
-        var size;
-        var ds = this;
-        // 清除原来含有.act的按钮
-        O(this).parent().parent().son("&li").son(".siser_btn").remove(".act");
-        // 给当前大小按钮加.act
-        O(ds).add(".act");
-        // 获取行列大小
-        size = O(ds).html().match(/\d+/g);
-        col = parseInt(size[0]);
-        row = parseInt(size[1]);
+        var conf = confirm("更换画布会清空拼豆，是否确定？");
+        if (conf == true) {
+            // size:按钮的文字; row:行数; col:列数
+            var size;
+            var ds = this;
+            // 清除原来含有.act的按钮
+            O(this).parent().parent().son("&li").son(".siser_btn").remove(".act");
+            // 给当前大小按钮加.act
+            O(ds).add(".act");
+            // 获取行列大小
+            size = O(ds).html().match(/\d+/g);
+            col = parseInt(size[0]);
+            row = parseInt(size[1]);
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawRect(col, row);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawRect(col, row);
+        } else {
+            return false;
+        }
     });
 
     O(".clear_canvas").click(function(){
-        clearCanvas();
-        drawRect(col, row);
+        var conf = confirm("是否确定清空？");
+        if (conf == true) {
+            clearCanvas();
+            drawRect(col, row);
+        } else {
+            return false;
+        }
     });
