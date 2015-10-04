@@ -56,12 +56,15 @@
         var x = parseInt((e.offsetX-20) / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt((e.offsetY-20) / 40);
 
-        if (circleData[x][y] != 0) { //判断该位置是否被下过了
-            clearCircle(x, y);
-            return;
+        if (x < col && y < row) {
+            if (circleData[x][y] != 0) { //判断该位置是否被下过了
+                clearCircle(x, y);
+                return;
+            }
+            drawCircle(x, y);
+        } else {
+            return false;
         }
-
-        drawCircle(x, y);
     }
 
     /*

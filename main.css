@@ -6,25 +6,17 @@ h2 {
     font-size: 16px;
 }
 
-.menu, .menu2 {
-	width: 23%;
-	position: absolute;
-	top: 15px;
-}
 .menu {
-/* 	float: left;
-margin-right: 30px; */
-	left: 15px;
-}
-.menu2 {
-	right: 15px;
+ 	float: left;
+	margin-right: 30px; 
 }
 .main {
-	margin: 25px 320px 0 320px;
+ 	float: left;
+	margin: 15px 0;
 }
 .menu_ul {
 	box-sizing: border-box;
-	width: 100%;
+	width: 300px;
 	margin: 0 0 15px 0;
 	padding: 10px;
 	list-style: none;
@@ -129,14 +121,12 @@ margin-right: 30px; */
 	text-align: center;
 }
 
-#canvas {
-  margin: 0 auto;
-  display: block;
-}
 .clear_canvas {
 	display: block;
 }
-
+.siser_input {
+	width: 30px;
+}
 .siser_btn {
     float: left;
     padding: 1px 10px;

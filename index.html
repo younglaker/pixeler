@@ -3,20 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
     <script type="text/javascript" src="octjs.js"></script>
 </head>
 <body onload="drawRect()">
     <div class="menu">
-        <ul class="colorPicker">
+        <ul class="color_picker menu_ul">
+           <h2>请选择颜色：</h2>
             <li>
+                <div class="color_box act">
+                    <div class="colors" id="colors_white"></div>
+                    <div class="color_count" id="color_cnt_white">0</div>
+                </div>
                 <div class="color_box">
                     <div class="colors" id="colors_black"></div>
                     <div class="color_count" id="color_cnt_black">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_white"></div>
-                    <div class="color_count" id="color_cnt_white">0</div>
                 </div>
             </li>
             <li>
@@ -45,12 +46,105 @@
                     <div class="color_count" id="color_cnt_red6">0</div>
                 </div>
             </li>
+            <li>
+                <div class="color_box">
+                    <div class="colors" id="colors_yellow1"></div>
+                    <div class="color_count" id="color_cnt_yellow1">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_yellow2"></div>
+                    <div class="color_count" id="color_cnt_yellow2">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_yellow3"></div>
+                    <div class="color_count" id="color_cnt_yellow3">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_yellow4"></div>
+                    <div class="color_count" id="color_cnt_yellow4">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_yellow5"></div>
+                    <div class="color_count" id="color_cnt_yellow5">0</div>
+                </div>
+            </li>
+            <li>
+                <div class="color_box">
+                    <div class="colors" id="colors_blue1"></div>
+                    <div class="color_count" id="color_cnt_blue1">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_blue2"></div>
+                    <div class="color_count" id="color_cnt_blue2">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_blue3"></div>
+                    <div class="color_count" id="color_cnt_blue3">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_purple1"></div>
+                    <div class="color_count" id="color_cnt_purple1">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_purple2"></div>
+                    <div class="color_count" id="color_cnt_purple2">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_purple3"></div>
+                    <div class="color_count" id="color_cnt_purple3">0</div>
+                </div>
+            </li>
+            <li>
+                <div class="color_box">
+                    <div class="colors" id="colors_green1"></div>
+                    <div class="color_count" id="color_cnt_green1">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_green2"></div>
+                    <div class="color_count" id="color_cnt_green2">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_green3"></div>
+                    <div class="color_count" id="color_cnt_green3">0</div>
+                </div>
+                <div class="color_box">
+                    <div class="colors" id="colors_green4"></div>
+                    <div class="color_count" id="color_cnt_green4">0</div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="siser menu_ul">
+            <h2>请选择画布大小：</h2>
+            <p>
+                长 <input type="text" class="siser_col siser_input" value="11"> 格
+                * 宽 <input type="text" class="siser_row siser_input" value="9"> 格
+                <button class="siser_ok">确定</button>
+            </p>
+        </div>
+
+        <div class="control menu_ul">
+            <button class="clear_canvas">清空画布</button>
+        </div>
+
+        <ul class="help menu_ul">
+            <h2>帮助：</h2>
+            <li>- 选择所需要的颜色、布局，在画布中选择设计拼豆</li>
+            <li>- 点击已画的拼豆则删除此拼豆</li>
+            <li>- 功能不断完善中，期待更多~</li>
+        </ul>
+
+        <ul class="contact menu_ul">
+            <h2>联系：</h2>
+            <li>参与开发：<a href="https://github.com/younglaker/pixeler">Github地址</a></li>
+            <li>微信：younglaker8</li>
         </ul>
     </div>
-    <div>
-        <canvas width="640" id="canvas" height="640">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
+    <div class="main">
+        <canvas id="canvas" width="550" height="500">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
         </canvas>
     </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
