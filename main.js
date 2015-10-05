@@ -2,10 +2,7 @@
     var g_ctx = g_canvas.getContext("2d");
     var g_circle_data = []; //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
     var grid_width = 40; // 画布格子宽度
-    var g_circle_color = "#fff"; // 默认颜色为白色
-    var g_curr_color_box = O("#color_cnt_white");
-    var g_curr_color_id = O("#color_cnt_white").getAttr("id");
-    // var g_row = 9, g_col = 11; // g_row:行数，g_col:列数
+    var g_circle_color = $('.color_picker').val(); // 默认颜色为白色
     var g_col = $(".siser_col").val(), 
         g_row = $(".siser_row").val(); // g_col:列数/长，g_row:行数/宽0
 
@@ -75,18 +72,15 @@
     function drawCircle(x, y) { //参数为：数组位置
         var count;
 
+        g_circle_color = $('.color_picker').val();
+
         if (x >= 0 && x < 15 && y >= 0 && y < 15) {
             g_ctx.fillStyle = g_circle_color;
             g_ctx.beginPath();
             g_ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
             g_ctx.closePath();
             g_ctx.fill();
-            // 所记录的颜色计数标签id
-            g_circle_data[x][y] = g_curr_color_id;
         }
-        // 计数加1
-        count = parseInt(g_curr_color_box.html()) + 1;
-        g_curr_color_box.html(count);
     }
 
     /*
@@ -101,9 +95,6 @@
         g_ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
         g_ctx.closePath();
         g_ctx.fill();
-        // 计数减1
-        count = parseInt(del_color.html()) - 1;
-        del_color.html(count);
         // 清除g_circle_data所记录的颜色计数标签id
         g_circle_data[x][y] = 0;
     }
@@ -112,23 +103,16 @@
      *  清除拼豆
      */
     function clearCanvas() {
-        g_ctx.clearRect(0, 0, g_canvas.width, g_canvas.height);   
+        g_ctx.clearRect(0, 0, g_canvas.width, g_canvas.height);
     }
 
     /*
      *  获取新颜色
      */
-    O(".colors").click(function(){
-        g_circle_color = Oct.rgbToHex(O(this).getCss("background-color"));
-        g_curr_color_box = O(this).parent().son(".color_count");
-        g_curr_color_id = g_curr_color_box.getAttr("id");
-
-        var ds = this;
-        // 清除原来含有.act的按钮
-        O(this).parent().parent().parent().son("&li").son(".color_box").remove(".act");
-        // 给当前大小按钮加.act
-        O(ds).parent().add(".act");
-    });
+/*    $('.color_picker').change(function(){
+        g_circle_color = $('.color_picker').val();
+        console.log(g_circle_color);
+    });*/
 
     /*
      *  开始在画布上点击
@@ -160,4 +144,8 @@
         } else {
             return false;
         }
+    });
+
+    $('.color_picker').colorPicker({
+        color: '#FFFFFF'
     });

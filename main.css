@@ -23,9 +23,15 @@ h2 {
     border: 1px #a2a8a8 solid;
     border-radius: 5px;
 }
-.color_picker li, .siser li {
+.color_picker_block li, .siser li {
 	margin-bottom: 10px;
 	overflow: auto;
+}
+.color_picker {
+	height: 25px;
+	padding: 0 5px;
+	border: 0;
+	border-radius: 5px;
 }
 .colors {
 	width: 25px;
@@ -135,7 +141,7 @@ h2 {
     cursor: pointer;
 }
 
-.color_picker .act, .siser .act {
+.color_picker_block .act, .siser .act {
     background: #42B9DF;
     color: #FFF;
 }

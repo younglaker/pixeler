@@ -4,115 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="main.css" />
-    <script type="text/javascript" src="octjs.js"></script>
 </head>
 <body onload="drawRect()">
     <div class="menu">
-        <ul class="color_picker menu_ul">
+        <div class="color_picker_block menu_ul">
            <h2>请选择颜色：</h2>
-            <li>
-                <div class="color_box act">
-                    <div class="colors" id="colors_white"></div>
-                    <div class="color_count" id="color_cnt_white">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_black"></div>
-                    <div class="color_count" id="color_cnt_black">0</div>
-                </div>
-            </li>
-            <li>
-                <div class="color_box">
-                    <div class="colors" id="colors_red1"></div>
-                    <div class="color_count" id="color_cnt_red1">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_red2"></div>
-                    <div class="color_count" id="color_cnt_red2">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_red3"></div>
-                    <div class="color_count" id="color_cnt_red3">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_red4"></div>
-                    <div class="color_count" id="color_cnt_red4">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_red5"></div>
-                    <div class="color_count" id="color_cnt_red5">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_red6"></div>
-                    <div class="color_count" id="color_cnt_red6">0</div>
-                </div>
-            </li>
-            <li>
-                <div class="color_box">
-                    <div class="colors" id="colors_yellow1"></div>
-                    <div class="color_count" id="color_cnt_yellow1">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_yellow2"></div>
-                    <div class="color_count" id="color_cnt_yellow2">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_yellow3"></div>
-                    <div class="color_count" id="color_cnt_yellow3">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_yellow4"></div>
-                    <div class="color_count" id="color_cnt_yellow4">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_yellow5"></div>
-                    <div class="color_count" id="color_cnt_yellow5">0</div>
-                </div>
-            </li>
-            <li>
-                <div class="color_box">
-                    <div class="colors" id="colors_blue1"></div>
-                    <div class="color_count" id="color_cnt_blue1">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_blue2"></div>
-                    <div class="color_count" id="color_cnt_blue2">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_blue3"></div>
-                    <div class="color_count" id="color_cnt_blue3">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_purple1"></div>
-                    <div class="color_count" id="color_cnt_purple1">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_purple2"></div>
-                    <div class="color_count" id="color_cnt_purple2">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_purple3"></div>
-                    <div class="color_count" id="color_cnt_purple3">0</div>
-                </div>
-            </li>
-            <li>
-                <div class="color_box">
-                    <div class="colors" id="colors_green1"></div>
-                    <div class="color_count" id="color_cnt_green1">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_green2"></div>
-                    <div class="color_count" id="color_cnt_green2">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_green3"></div>
-                    <div class="color_count" id="color_cnt_green3">0</div>
-                </div>
-                <div class="color_box">
-                    <div class="colors" id="colors_green4"></div>
-                    <div class="color_count" id="color_cnt_green4">0</div>
-                </div>
-            </li>
-        </ul>
+           <input class="color_picker"  value="#FFFFFF">
+        </div>
 
         <div class="siser menu_ul">
             <h2>请选择画布大小：</h2>
@@ -144,7 +42,9 @@
         <canvas id="canvas" width="550" height="500">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
         </canvas>
     </div>
+    <script type="text/javascript" src="octjs.js"></script>
     <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="tinyColorPicker-PitPik.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

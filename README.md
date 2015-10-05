@@ -8,9 +8,9 @@ A website to design pixel picture, based on HTML5 canvas.
 - [ ] 根据长宽格子数自动调整画布大小
 - [ ] 自定义页面背景色
 - [ ] 虚化画布线条
+- [ ] 保存5步内操作（用队列记录5步内格子位置和颜色）
 - [ ] 用纸的截图替换色块
 - [ ] hover更换布局时，显示实际盒子样式
-- [ ] 颜色选择改用取色器
 - [ ] 像素形状可选圆形、方块，并且重新绘制画布上的拼豆
 - [ ] 生成图片并保存分享
 - [ ] 定制网站改用花的形状
@@ -24,8 +24,13 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 更换布局的清空提示
 - [x] 清空画布
 - [x] 写使用帮助、提交建议、联系
+- [x] 颜色选择改用取色器
 
 ## Change log
+
+### 20151005
+index.html：使用取色器
+index.html: Use color picker to change the color
 
 ### 20151003
 clj.htm：三栏布局。
