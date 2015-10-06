@@ -146,6 +146,41 @@
         }
     });
 
-    $('.color_picker').colorPicker({
+/*    $('.color_picker').colorPicker({
         color: '#FFFFFF'
+    });*/
+
+/*    $('.bg_color').colorPicker({
+        animationSpeed: 100000,
+        opacity: false,
+        doRender: '.menu',
+        renderCallback: function($elm, toggled) {
+            console.log("message");
+        var colors = this.color.colors,
+            rgb = colors.RND.rgb;
+
+        $('.cp-disp').css({
+            backgroundColor: '#' + colors.HEX,
+            color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
+        }).text('rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b +
+            ', ' + (Math.round(colors.alpha * 100) / 100) + ')');
+
+        }
+    });*/
+    
+    $(".color_picker").minicolors({
+        letterCase: 'uppercase'
+    });
+
+    $(".bg_color").minicolors({
+        letterCase: 'uppercase',
+        hide: function() {
+            O("&body").setCss({'backgroundColor': $(this).val()});
+        }
+        // 下面代码是延时确定颜色，可以做到实时更新颜色，上面只是在取色器关闭时执行
+        /*,
+        changeDelay: 500,
+        change: function(hex, opacity) {
+            O("&body").setCss({'backgroundColor': $(this).val()});
+        }*/
     });

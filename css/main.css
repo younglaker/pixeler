@@ -27,12 +27,12 @@ h2 {
 	margin-bottom: 10px;
 	overflow: auto;
 }
-.color_picker {
+/* .color_picker {
 	height: 25px;
 	padding: 0 5px;
 	border: 0;
 	border-radius: 5px;
-}
+} */
 .colors {
 	width: 25px;
 	height: 25px;
