@@ -6,7 +6,6 @@ A website to design pixel picture, based on HTML5 canvas.
 
 - [ ] 减小画布格子大小
 - [ ] 根据长宽格子数自动调整画布大小
-- [ ] 自定义页面背景色
 - [ ] 虚化画布线条
 - [ ] 保存5步内操作（用队列记录5步内格子位置和颜色）
 - [ ] 用纸的截图替换色块
@@ -25,6 +24,7 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 清空画布
 - [x] 写使用帮助、提交建议、联系
 - [x] 颜色选择改用取色器
+- [x] 自定义页面背景色
 
 ## Change log
 
