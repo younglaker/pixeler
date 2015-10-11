@@ -1,8 +1,11 @@
+$(document).ready(function() {
     var g_canvas = document.getElementById("canvas");
     var g_ctx = g_canvas.getContext("2d");
     var g_circle_data = []; //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
     var grid_width = 40; // 画布格子宽度
-    var g_circle_color = $('.color_picker').val(); // 默认颜色为白色
+    var g_circle_color = $('.color_picker').val(); // 默认拼豆颜色
+    var g_bg_color = $('.bg_color').val(); // 默认背景色
+    var g_pindou_shape = $(".pindou_shape:checked").val();
     var g_col = $(".siser_col").val(), 
         g_row = $(".siser_row").val(); // g_col:列数/长，g_row:行数/宽0
 
@@ -10,7 +13,7 @@
      *  绘制画布
      *  页面加载完毕调用函数，初始化画布
      */
-    function drawRect() {  
+    function drawCanvas() {  
         var x_width = g_col * grid_width,
             y_width = g_row * grid_width;
 
@@ -56,18 +59,26 @@
         var y = parseInt((e.offsetY-20) / 40);
 
         if (x < g_col && y < g_row) {
-            if (g_circle_data[x][y] != 0) { //判断该位置是否被下过了
-                clearCircle(x, y);
-                return;
+            if (g_pindou_shape == "rectangle") {
+                if (g_circle_data[x][y] != 0) { //判断该位置是否被下过了
+                    clearRect(x, y);
+                    return;
+                }
+                drawRect(x, y);
+            } else {
+                if (g_circle_data[x][y] != 0) { //判断该位置是否被下过了
+                    clearCircle(x, y);
+                    return;
+                }
+                drawCircle(x, y);
             }
-            drawCircle(x, y);
         } else {
             return false;
         }
     }
 
     /*
-     *  绘制拼豆
+     *  绘制圆形拼豆
      */
     function drawCircle(x, y) { //参数为：数组位置
         var count;
@@ -80,39 +91,72 @@
             g_ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
             g_ctx.closePath();
             g_ctx.fill();
+            // 所记录颜色
+            g_circle_data[x][y] = g_circle_color;
         }
     }
 
     /*
-     *  清除拼豆
+     *  清除圆形拼豆
      */
     function clearCircle(x, y) {
         var count;
-        var del_color = O("#" + g_circle_data[x][y]);
         // 清除拼豆
-        g_ctx.fillStyle = "#ddd";
+        g_ctx.fillStyle = g_bg_color;
         g_ctx.beginPath();
         g_ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
         g_ctx.closePath();
         g_ctx.fill();
-        // 清除g_circle_data所记录的颜色计数标签id
-        g_circle_data[x][y] = 0;
+        // 1表示标记为已覆盖过颜色
+        g_circle_data[x][y] = 1;
     }
 
     /*
-     *  清除拼豆
+     *  绘制方形拼豆
+     */
+    function drawRect(x, y) { //参数为：数组位置
+        var count;
+
+        g_circle_color = $('.color_picker').val();
+
+        if (x >= 0 && x < 15 && y >= 0 && y < 15) {
+            g_ctx.fillStyle = g_circle_color;
+            g_ctx.beginPath();
+            g_ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
+            g_ctx.closePath();
+            g_ctx.fill();
+            // 所记录颜色
+            g_circle_data[x][y] = g_circle_color;
+        }
+    }
+
+    /*
+     *  清除方形拼豆
+     */
+    function clearRect(x, y) {
+        var count;
+        // 清除拼豆
+            console.log(g_bg_color);
+        g_ctx.fillStyle = g_bg_color;
+        g_ctx.beginPath();
+        g_ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
+        g_ctx.closePath();
+        g_ctx.fill();
+        // 1表示标记为已覆盖过颜色
+        g_circle_data[x][y] = 1;
+    }
+
+    /*
+     *  清除画布
      */
     function clearCanvas() {
         g_ctx.clearRect(0, 0, g_canvas.width, g_canvas.height);
     }
 
     /*
-     *  获取新颜色
+     *  初始化画布
      */
-/*    $('.color_picker').change(function(){
-        g_circle_color = $('.color_picker').val();
-        console.log(g_circle_color);
-    });*/
+    drawCanvas();
 
     /*
      *  开始在画布上点击
@@ -130,7 +174,7 @@
             g_col = $(".siser_col").val();
             g_row = $(".siser_row").val(); 
             g_ctx.clearRect(0, 0, g_canvas.width, g_canvas.height);
-            drawRect(g_col, g_row);
+            drawCanvas(g_col, g_row);
         } else {
             return false;
         }
@@ -140,33 +184,11 @@
         var conf = confirm("是否确定清空？");
         if (conf == true) {
             clearCanvas();
-            drawRect(g_col, g_row);
+            drawCanvas(g_col, g_row);
         } else {
             return false;
         }
     });
-
-/*    $('.color_picker').colorPicker({
-        color: '#FFFFFF'
-    });*/
-
-/*    $('.bg_color').colorPicker({
-        animationSpeed: 100000,
-        opacity: false,
-        doRender: '.menu',
-        renderCallback: function($elm, toggled) {
-            console.log("message");
-        var colors = this.color.colors,
-            rgb = colors.RND.rgb;
-
-        $('.cp-disp').css({
-            backgroundColor: '#' + colors.HEX,
-            color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
-        }).text('rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b +
-            ', ' + (Math.round(colors.alpha * 100) / 100) + ')');
-
-        }
-    });*/
     
     $(".color_picker").minicolors({
         letterCase: 'uppercase'
@@ -176,6 +198,7 @@
         letterCase: 'uppercase',
         hide: function() {
             O("&body").setCss({'backgroundColor': $(this).val()});
+            g_bg_color = $(this).val();
         }
         // 下面代码是延时确定颜色，可以做到实时更新颜色，上面只是在取色器关闭时执行
         /*,
@@ -184,3 +207,10 @@
             O("&body").setCss({'backgroundColor': $(this).val()});
         }*/
     });
+
+    $(".pindou_shape").change(function() { 
+        g_pindou_shape = $(".pindou_shape:checked").val();
+    }); 
+
+
+});

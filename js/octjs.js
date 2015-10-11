@@ -54,7 +54,7 @@
 		// "querySelector" for samrt browser
 		if (document.querySelectorAll) {
 			// "replace" is for tag
-			var node_list = document.querySelectorAll(selector.replace("&", ""))
+			var node_list = document.querySelectorAll(selector.replace("&", ""));
 			for (var i in node_list) {
 				// You can "console.log(node_list[i]);" to see, there are some function or non-tag elements
 				if (node_list[i].tagName !== undefined) {

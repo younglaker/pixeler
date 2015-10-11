@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-minicolors-claviska.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
-<body onload="drawRect()">
+<body onload="">
     <div class="menu">
         <div class="color_picker_block menu_ul">
            <h2>请选择颜色：</h2>
@@ -19,6 +19,18 @@
                 长 <input type="text" class="siser_col siser_input" value="11"> 格
                 * 宽 <input type="text" class="siser_row siser_input" value="9"> 格
                 <button class="siser_ok">确定</button>
+            </p>
+        </div>
+        
+        <div class="shape menu_ul">
+            <h2>请选择拼豆形状：</h2>
+            <p>
+                <form id="shape_form">
+                    <input type="radio" class="pindou_shape" name="shape" value="rectangle" /> 方形
+                    <br />
+                    <input type="radio" class="pindou_shape" name="shape" value="circle" checked/> 圆形
+                </form>
+                <button class="shape_ok">确定</button>
             </p>
         </div>
 
