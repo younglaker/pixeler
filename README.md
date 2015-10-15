@@ -28,20 +28,24 @@ A website to design pixel picture, based on HTML5 canvas.
 
 ## Change log
 
+### 20151006
+index.html：可以自定义背景色。  
+index.html: Use color picker to change the background color.
+
 ### 20151005
-index.html：使用取色器
-index.html: Use color picker to change the color
+index.html：使用取色器自定义拼豆颜色。  
+index.html: Use color picker to change the color.
 
 ### 20151003
-clj.htm：三栏布局。
+clj.htm：三栏布局。   
 clj.htm：New layout.
 
 ### 20151001
-clj.htm：添加所有颜色的拼豆，新增帮助和联系。
+clj.htm：添加所有颜色的拼豆，新增帮助和联系。  
 clj.htm：Add all color.Add help and contact block.
 
 ### 20150927
-clj.htm：改变行列数
+clj.htm：改变行列数。  
 clj.htm: Change the row and column.  
 
 ### 20150921

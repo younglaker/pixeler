@@ -2,7 +2,8 @@ $(document).ready(function() {
     var g_canvas = document.getElementById("canvas");
     var g_ctx = g_canvas.getContext("2d");
     var g_circle_data = []; //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，1为已填充的
-    var grid_width = 40; // 画布格子宽度
+    var grid_width = 30; // 画布格子宽度
+    var half_grid_width = grid_width / 2; // 画布格子宽度
     var g_circle_color = $('.color_picker').val(); // 默认拼豆颜色
     var g_bg_color = $('.bg_color').val(); // 默认背景色
     var g_pindou_shape = $(".pindou_shape:checked").val();
@@ -39,6 +40,9 @@ $(document).ready(function() {
 
 
         // 设置与画布对应的二维数组
+        // 0: 未下过
+        // 1: 被清除过
+        // 颜色值: 此处颜色值
         g_circle_data = [];
         for (var x = 0; x < g_col; x++) {
             g_circle_data[x] = [];
@@ -55,18 +59,21 @@ $(document).ready(function() {
      *  寻找点击位置
      */
     function play(e) { //鼠标点击时发生
-        var x = parseInt((e.offsetX-20) / 40);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
-        var y = parseInt((e.offsetY-20) / 40);
-
+        var x = parseInt((e.offsetX - half_grid_width) / grid_width);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
+        var y = parseInt((e.offsetY - half_grid_width) / grid_width);
+console.log(e.offsetX);
+      console.log(e.offsetY);
+console.log(x);
+      console.log(y);
         if (x < g_col && y < g_row) {
             if (g_pindou_shape == "rectangle") {
-                if (g_circle_data[x][y] != 0) { //判断该位置是否被下过了
+                if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
                     clearRect(x, y);
                     return;
                 }
                 drawRect(x, y);
             } else {
-                if (g_circle_data[x][y] != 0) { //判断该位置是否被下过了
+                if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
                     clearCircle(x, y);
                     return;
                 }
@@ -82,13 +89,15 @@ $(document).ready(function() {
      */
     function drawCircle(x, y) { //参数为：数组位置
         var count;
-
+      console.log((x + 1) * grid_width);
+      console.log((y + 1) * grid_width);
+console.log("draw");
         g_circle_color = $('.color_picker').val();
 
         if (x >= 0 && x < 15 && y >= 0 && y < 15) {
             g_ctx.fillStyle = g_circle_color;
             g_ctx.beginPath();
-            g_ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
+            g_ctx.arc((x + 1) * grid_width, (y + 1) * grid_width, half_grid_width - 6, 0, Math.PI * 2, true);
             g_ctx.closePath();
             g_ctx.fill();
             // 所记录颜色
@@ -104,7 +113,7 @@ $(document).ready(function() {
         // 清除拼豆
         g_ctx.fillStyle = g_bg_color;
         g_ctx.beginPath();
-        g_ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
+        g_ctx.arc((x + 1) * grid_width, (y + 1) * grid_width, half_grid_width - 6, 0, Math.PI * 2, true);
         g_ctx.closePath();
         g_ctx.fill();
         // 1表示标记为已覆盖过颜色
@@ -120,13 +129,6 @@ $(document).ready(function() {
         g_circle_color = $('.color_picker').val();
 
         if (x >= 0 && x < 15 && y >= 0 && y < 15) {
-            g_ctx.fillStyle = g_circle_color;
-            g_ctx.beginPath();
-            g_ctx.arc((x + 1) * 40, (y + 1) * 40, 15, 0, Math.PI * 2, true);
-            g_ctx.closePath();
-            g_ctx.fill();
-            // 所记录颜色
-            g_circle_data[x][y] = g_circle_color;
         }
     }
 
@@ -136,14 +138,6 @@ $(document).ready(function() {
     function clearRect(x, y) {
         var count;
         // 清除拼豆
-            console.log(g_bg_color);
-        g_ctx.fillStyle = g_bg_color;
-        g_ctx.beginPath();
-        g_ctx.arc((x + 1) * 40, (y + 1) * 40, 16, 0, Math.PI * 2, true);
-        g_ctx.closePath();
-        g_ctx.fill();
-        // 1表示标记为已覆盖过颜色
-        g_circle_data[x][y] = 1;
     }
 
     /*
