@@ -1,9 +1,13 @@
 body {
     margin: 10px;
     background: #ddd;
+    font-size: 14px
 }
 h2 {
     font-size: 16px;
+}
+p {
+	margin: 5px 0;
 }
 
 .menu {
@@ -16,9 +20,9 @@ h2 {
 }
 .menu_ul {
 	box-sizing: border-box;
-	width: 300px;
-	margin: 0 0 15px 0;
-	padding: 10px;
+	width: 250px;
+	margin: 0 0 10px 0;
+	padding: 5px;
 	list-style: none;
     border: 1px #a2a8a8 solid;
     border-radius: 5px;

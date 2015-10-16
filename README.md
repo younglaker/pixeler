@@ -2,8 +2,9 @@
 一个用于设计像素图片（拼豆）的应用。用HTML5 canvas开发。  
 A website to design pixel picture, based on HTML5 canvas.
 
-## To-Do
+## Function To-Do
 
+- [ ] 减少左侧栏的信息的展示
 - [ ] 根据长宽格子数自动调整画布大小
 - [ ] 虚化画布线条
 - [ ] 保存5步内操作（用队列记录5步内格子位置和颜色）
@@ -25,6 +26,10 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 颜色选择改用取色器
 - [x] 自定义页面背景色
 - [x] 减小画布格子大小
+
+## Code To-Do
+- [ ] 合并清除拼豆的代码
+- [ ] 分离坐标和画布
 
 ## Change log
 

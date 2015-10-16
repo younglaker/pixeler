@@ -107,7 +107,7 @@ $(document).ready(function() {
         // 清除拼豆
         g_ctx.fillStyle = g_bg_color;
         g_ctx.beginPath();
-        g_ctx.arc(20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 4, 0, Math.PI * 2, true);
+        g_ctx.arc(20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 3, 0, Math.PI * 2, true);
         g_ctx.closePath();
         g_ctx.fill();
         // 1表示标记为已覆盖过颜色
