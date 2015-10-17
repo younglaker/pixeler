@@ -64,13 +64,13 @@ $(document).ready(function() {
         if (x < g_col && y < g_row) {
             if (g_pindou_shape == "rectangle") {
                 if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
-                    clearRect(x, y);
+                    clearPixl(x, y);
                     return;
                 }
                 drawRect(x, y);
             } else {
                 if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
-                    clearCircle(x, y);
+                    clearPixl(x, y);
                     return;
                 }
                 drawCircle(x, y);
@@ -100,21 +100,6 @@ $(document).ready(function() {
     }
 
     /*
-     *  清除圆形拼豆
-     */
-    function clearCircle(x, y) {
-        var count;
-        // 清除拼豆
-        g_ctx.fillStyle = g_bg_color;
-        g_ctx.beginPath();
-        g_ctx.arc(20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 3, 0, Math.PI * 2, true);
-        g_ctx.closePath();
-        g_ctx.fill();
-        // 1表示标记为已覆盖过颜色
-        g_circle_data[x][y] = 1;
-    }
-
-    /*
      *  绘制方形拼豆
      */
     function drawRect(x, y) { //参数为：数组位置
@@ -127,11 +112,19 @@ $(document).ready(function() {
     }
 
     /*
-     *  清除方形拼豆
+     *  清除拼豆
      */
-    function clearRect(x, y) {
+    function clearPixl(x, y) {
         var count;
         // 清除拼豆
+        g_ctx.fillStyle = g_bg_color;
+        g_ctx.beginPath();
+        //　因为棋盘占了１px的线条，所以要调整位置
+        g_ctx.rect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
+        g_ctx.closePath();
+        g_ctx.fill();
+        // 1表示标记为已覆盖过颜色
+        g_circle_data[x][y] = 1;
     }
 
     /*
@@ -199,6 +192,5 @@ $(document).ready(function() {
     $(".pindou_shape").change(function() { 
         g_pindou_shape = $(".pindou_shape:checked").val();
     }); 
-
 
 });
