@@ -15,8 +15,9 @@ p {
 	margin-right: 30px; 
 }
 .main {
- 	float: left;
+/* 	float: left;*/
 	margin: 15px 0;
+    overflow: scroll;
 }
 .menu_ul {
 	box-sizing: border-box;

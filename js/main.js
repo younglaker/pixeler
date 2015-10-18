@@ -18,6 +18,9 @@ $(document).ready(function() {
         var x_width = g_col * g_grid_width,
             y_width = g_row * g_grid_width;
 
+        g_canvas.width = x_width + 100;
+        g_canvas.height =  y_width + 100;
+
         // i从20开始，是为了留位置显示坐标
         for (var i = 20; i <= y_width + 20; i += g_grid_width) {  //绘制行
             g_ctx.beginPath();
@@ -49,6 +52,7 @@ $(document).ready(function() {
                 g_circle_data[x][y] = 0;
             }
         }
+      console.log(g_circle_data);
 
         // 把颜色计数全部清空
         O(".color_count").html("0");
@@ -60,8 +64,9 @@ $(document).ready(function() {
     function play(e) { //鼠标点击时发生
         var x = parseInt((e.offsetX - g_half_grid_width) / g_grid_width);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt((e.offsetY - g_half_grid_width) / g_grid_width);
-
+console.log(g_circle_data[x][y] );
         if (x < g_col && y < g_row) {
+          console.log("11");
             if (g_pindou_shape == "rectangle") {
                 if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
                     clearPixl(x, y);
@@ -73,6 +78,7 @@ $(document).ready(function() {
                     clearPixl(x, y);
                     return;
                 }
+              console.log("22");
                 drawCircle(x, y);
             }
         } else {
@@ -88,7 +94,7 @@ $(document).ready(function() {
 
         g_circle_color = $('.color_picker').val();
 
-        if (x >= 0 && x < 15 && y >= 0 && y < 15) {
+        if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
             g_ctx.fillStyle = g_circle_color;
             g_ctx.beginPath();
             g_ctx.arc(20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 4, 0, Math.PI * 2, true);
@@ -107,7 +113,7 @@ $(document).ready(function() {
 
         g_circle_color = $('.color_picker').val();
 
-        if (x >= 0 && x < 15 && y >= 0 && y < 15) {
+        if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
         }
     }
 
@@ -191,6 +197,6 @@ $(document).ready(function() {
 
     $(".pindou_shape").change(function() { 
         g_pindou_shape = $(".pindou_shape:checked").val();
-    }); 
+    });
 
 });
