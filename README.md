@@ -4,7 +4,6 @@ A website to design pixel picture, based on HTML5 canvas.
 
 ## Function To-Do
 
-- [ ] 减少左侧栏的信息的展示
 - [ ] 自定义线条颜色
 - [ ] 虚化画布线条
 - [ ] 画布放大缩小
@@ -28,12 +27,17 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 自定义页面背景色
 - [x] 减小画布格子大小
 - [x] 根据长宽格子数自动调整画布大小
+- [x] 减少左侧栏的信息的展示
 
 ## Code To-Do
 - [x] 合并清除拼豆的代码
 - [ ] 分离坐标、画布、拼豆
 
 ## Change log
+
+### 20151023
+index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。  
+index.html: Fix- Set the same color of deleted pindou as background color.
 
 ### 20151018
 index.html：根据长宽格子数自动调整画布大小。  
