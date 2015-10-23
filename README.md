@@ -5,6 +5,7 @@ A website to design pixel picture, based on HTML5 canvas.
 ## Function To-Do
 
 - [ ] 减少左侧栏的信息的展示
+- [ ] 自定义线条颜色
 - [ ] 虚化画布线条
 - [ ] 画布放大缩小
 - [ ] 像素形状可选圆形、方块，并且重新绘制画布上的拼豆
@@ -30,11 +31,11 @@ A website to design pixel picture, based on HTML5 canvas.
 
 ## Code To-Do
 - [x] 合并清除拼豆的代码
-- [ ] 分离坐标和画布
+- [ ] 分离坐标、画布、拼豆
 
 ## Change log
 
-### 2015101８
+### 20151018
 index.html：根据长宽格子数自动调整画布大小。  
 index.html: Adjust canvas size when change the grid count.
 

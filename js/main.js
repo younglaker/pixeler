@@ -52,7 +52,6 @@ $(document).ready(function() {
                 g_circle_data[x][y] = 0;
             }
         }
-      console.log(g_circle_data);
 
         // 把颜色计数全部清空
         O(".color_count").html("0");
@@ -186,6 +185,19 @@ console.log(g_circle_data[x][y] );
         hide: function() {
             O("&body").setCss({'backgroundColor': $(this).val()});
             g_bg_color = $(this).val();
+            
+            for (var x = 0; x < g_col; x++) {
+                for (var y = 0; y < g_row; y++) {
+                    if(g_circle_data[x][y] == 1) {
+                        g_ctx.fillStyle = g_bg_color;
+                        g_ctx.beginPath();
+                        //　因为棋盘占了１px的线条，所以要调整位置
+                        g_ctx.rect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
+                        g_ctx.closePath();
+                        g_ctx.fill();
+                    }
+                }
+            }
         }
         // 下面代码是延时确定颜色，可以做到实时更新颜色，上面只是在取色器关闭时执行
         /*,
