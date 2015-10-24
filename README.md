@@ -29,8 +29,10 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 根据长宽格子数自动调整画布大小
 
 ## Code To-Do
-- [x] 合并清除拼豆的代码
+- [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 分离坐标和画布
+- [x] 合并清除拼豆的代码
+
 
 ## Change log
 

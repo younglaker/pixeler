@@ -52,7 +52,6 @@ $(document).ready(function() {
                 g_circle_data[x][y] = 0;
             }
         }
-      console.log(g_circle_data);
 
         // 把颜色计数全部清空
         O(".color_count").html("0");
@@ -64,9 +63,8 @@ $(document).ready(function() {
     function play(e) { //鼠标点击时发生
         var x = parseInt((e.offsetX - g_half_grid_width) / g_grid_width);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt((e.offsetY - g_half_grid_width) / g_grid_width);
-console.log(g_circle_data[x][y] );
+
         if (x < g_col && y < g_row) {
-          console.log("11");
             if (g_pindou_shape == "rectangle") {
                 if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
                     clearPixl(x, y);
@@ -78,7 +76,6 @@ console.log(g_circle_data[x][y] );
                     clearPixl(x, y);
                     return;
                 }
-              console.log("22");
                 drawCircle(x, y);
             }
         } else {
@@ -97,6 +94,7 @@ console.log(g_circle_data[x][y] );
         if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
             g_ctx.fillStyle = g_circle_color;
             g_ctx.beginPath();
+            // 格子4边各占了１px的线条，半径减4是为了不让拼豆太靠近格子线
             g_ctx.arc(20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 4, 0, Math.PI * 2, true);
             g_ctx.closePath();
             g_ctx.fill();
@@ -114,6 +112,13 @@ console.log(g_circle_data[x][y] );
         g_circle_color = $('.color_picker').val();
 
         if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
+            g_ctx.fillStyle = g_circle_color;
+            g_ctx.beginPath();
+            g_ctx.rect(20 + g_grid_width * x + 2, 20 + g_grid_width * y + 2, g_grid_width - 4, g_grid_width - 4);
+            g_ctx.closePath();
+            g_ctx.fill();
+            // 所记录颜色
+            g_circle_data[x][y] = g_circle_color;
         }
     }
 
