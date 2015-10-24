@@ -9,6 +9,9 @@ h2 {
 p {
 	margin: 5px 0;
 }
+li {
+    margin: 0 0 5px 0;
+}
 
 .menu {
  	float: left;

@@ -63,7 +63,6 @@ $(document).ready(function() {
     function play(e) { //鼠标点击时发生
         var x = parseInt((e.offsetX - g_half_grid_width) / g_grid_width);  //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
         var y = parseInt((e.offsetY - g_half_grid_width) / g_grid_width);
-
         if (x < g_col && y < g_row) {
             if (g_pindou_shape == "rectangle") {
                 if (g_circle_data[x][y] != 0 && g_circle_data[x][y] != 1) { //判断该位置是否被下过了
@@ -191,6 +190,19 @@ $(document).ready(function() {
         hide: function() {
             O("&body").setCss({'backgroundColor': $(this).val()});
             g_bg_color = $(this).val();
+            
+            for (var x = 0; x < g_col; x++) {
+                for (var y = 0; y < g_row; y++) {
+                    if(g_circle_data[x][y] == 1) {
+                        g_ctx.fillStyle = g_bg_color;
+                        g_ctx.beginPath();
+                        //　因为棋盘占了１px的线条，所以要调整位置
+                        g_ctx.rect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
+                        g_ctx.closePath();
+                        g_ctx.fill();
+                    }
+                }
+            }
         }
         // 下面代码是延时确定颜色，可以做到实时更新颜色，上面只是在取色器关闭时执行
         /*,
