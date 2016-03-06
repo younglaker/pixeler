@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
@@ -9,28 +9,29 @@
 <body onload="">
     <div class="menu">
         <div class="color_picker_block menu_ul">
-           <h2>请选择颜色：</h2>
+           <h2>选择颜色：</h2>
            <input class="color_picker" value="#FFFFFF">
             <hr>
-            <h2>请选择画布大小：</h2>
+            <h2>选择画布大小：</h2>
             <p>
                 长 <input type="text" class="siser_col siser_input" value="11"> 格 <br>
                 宽 <input type="text" class="siser_row siser_input" value="9"> 格
                 <button class="siser_ok">确定</button>
             </p>
             <hr>
-            <h2>请选择拼豆形状：</h2>
+            <h2>选择拼豆形状：</h2>
             <p>
                 <form id="shape_form">
                     <input type="radio" class="pindou_shape" name="shape" value="rectangle" /> 方形
                     <br />
                     <input type="radio" class="pindou_shape" name="shape" value="circle" checked/> 圆形
-                <button class="shape_ok">确定</button>
                 </form>
             </p>
             <hr>
-            <h2>请更换背景色：</h2>
+            <h2>更换背景色：</h2>
             <p><input class="bg_color" value="#DDDDDD"></input></p>
+            <!-- <h2>更换线条色：</h2>
+            <p><input class="line_color" value="#000000"></input></p> -->
             <hr>
             <p><button class="clear_canvas">清空画布</button></p>        
         </div>
@@ -53,7 +54,7 @@
         <canvas id="canvas" width="550" height="500">您的浏览器不支持本应用，请使用谷歌浏览器，或猎豹、360等浏览器的极速模式打开.
         </canvas>
     </div>
-    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="js/octjs.js"></script>
     <script type="text/javascript" src="js/jquery-minicolors-claviska.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
