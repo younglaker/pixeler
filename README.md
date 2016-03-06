@@ -8,6 +8,7 @@ A website to design pixel picture, based on HTML5 canvas.
 - [ ] 自定义网格是否显示
 - [ ] LocalStorage保存图案历史
 - [ ] 虚化画布线条
+- [ ] 长按鼠标连续绘制
 - [ ] 画布放大缩小
 - [ ] 像素形状可选圆形、方块，并且重新绘制画布上的拼豆
 - [ ] 选区功能（参照PS）
@@ -37,8 +38,15 @@ A website to design pixel picture, based on HTML5 canvas.
 - [x] 减少左侧栏的信息的展示
 
 ## Code To-Do
+<<<<<<< HEAD
 - [ ] 分离坐标、画布、拼豆
 - [ ] 封装Canvas各种绘图方法
+=======
+
+- [ ] 切换拼豆形状时，把之前形状替换成现在的形状
+- [ ] 分离坐标和画布
+- [ ] Canvas方法的封装
+>>>>>>> 6a795290614623292eab0b08dd1909c5943dcbd0
 - [x] 合并清除拼豆的代码
 
 ## Change log
