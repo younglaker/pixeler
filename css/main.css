@@ -1,6 +1,6 @@
 body {
     margin: 10px;
-    background: #ddd;
+    background: url(../img/grey-bg.png);
     font-size: 14px;
     box-sizing: border;
 }
