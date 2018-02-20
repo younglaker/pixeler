@@ -44,6 +44,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 用EasyCanvas重写canvas功能
+- [ ] 工程化-sass、auto-reload
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
 - [x] 合并清除拼豆的代码
 
