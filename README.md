@@ -40,15 +40,19 @@ A website designing pixel picture, based on HTML5 canvas.
 
 ## Code To-Do
 
-- [ ] 分离坐标、画布、拼豆
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 用EasyCanvas重写canvas功能
 - [ ] 工程化-sass、auto-reload
+- [x] 分离坐标画布、拼豆画布
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
 - [x] 合并清除拼豆的代码
 
 ## Change log
+
+### 20180221
+index.html：分离坐标画布、拼豆画布
+index.html: Add- Sperate coordinate canvas and drawing canvas.
 
 ### 20151023
 index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。

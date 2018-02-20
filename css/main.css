@@ -28,6 +28,7 @@ li {
   /* 	float: left;*/
   margin: 15px 0;
   overflow: scroll;
+  position: relative;
 }
 
 .menu_ul {
@@ -43,6 +44,12 @@ li {
   margin-bottom: 10px;
   overflow: auto;
 }
+
+
+
+
+
+
 
 
 /* .color_picker {
@@ -193,4 +200,16 @@ li {
 .siser .act {
   background: #42B9DF;
   color: #FFF;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+#canvas_coord {
+  position: relative;
+  z-index: 1;
 }
