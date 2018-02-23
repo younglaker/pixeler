@@ -1,12 +1,14 @@
 // 导入需要的模块
 var gulp = require('gulp'),
   sass = require('gulp-sass'),
+  plumber = require('gulp-plumber'),
   browserSync = require('browser-sync').create();
 
 
 // 编译less，其中plumber是防止出错崩溃的插件
 gulp.task('sass', function() {
   gulp.src('src/sass/*.sass')
+    .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('dist/css'));
 });
@@ -24,6 +26,9 @@ gulp.task('watch', function() {
       baseDir: "public"
     }
   });
+
+  // 预处理 **表示各个层级
+  gulp.watch('src/sass/**', ['sass']);
 
 
   // 自动刷新
