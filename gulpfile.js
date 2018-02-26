@@ -6,6 +6,7 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   clean = require('gulp-clean'),
   minifyCss = require('gulp-minify-css'),
+  cached = require('gulp-cached'),
   browserSync = require('browser-sync').create();
 
 
@@ -22,7 +23,9 @@ gulp.task('sass', function() {
   gulp.src('src/sass/*.sass')
     .pipe(plumber())
     .pipe(sass())
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/css'))
+    .pipe(minifyCss())
+    .pipe(gulp.dest('public/css'));
 });
 
 // 将所有css文件连接为一个文件并压缩，存到public/css
@@ -43,13 +46,10 @@ gulp.task('concatJs', function() {
 });
 
 // 复制图片
-gulp.task('copy_img', function() {
-
-/*  gulp.src('public/img/')
-    .pipe(clean({ force: true }));*/
+gulp.task('copyImg', function() {
 
   gulp.src('src/img/*')
-    .pipe(plumber())
+    .pipe(cached('copyImg'))
     .pipe(gulp.dest('public/img/'));
 });
 
@@ -63,14 +63,19 @@ gulp.task('watch', function() {
   // 建立浏览器自动刷新服务器
   browserSync.init({
     server: {
-      baseDir: "public"
+      // baseDir: "public"
+      baseDir: "./"
     }
   });
 
   // 预处理 **表示各个层级
   gulp.watch('src/sass/**', ['sass']);
-  gulp.watch('src/img/**', ['copy_img']);
+  gulp.watch('src/img/**', ['copyImg']);
 
+
+  // 合并压缩
+  gulp.watch('dist/css/*.css', ['concatCss']);
+  gulp.watch('dist/js/*.js', ['concatJs']);
 
   // 自动刷新
   gulp.watch('public/**', function() {

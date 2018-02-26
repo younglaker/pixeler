@@ -19,6 +19,7 @@
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-copy": "^1.1.0",
