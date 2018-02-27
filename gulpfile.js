@@ -45,12 +45,20 @@ gulp.task('concatJs', function() {
     .pipe(gulp.dest('public/js'));
 });
 
-// 复制图片
+// 同步图片
 gulp.task('copyImg', function() {
 
   gulp.src('src/img/*')
     .pipe(cached('copyImg'))
     .pipe(gulp.dest('public/img/'));
+});
+
+// 同步静态资源
+gulp.task('copyStatic', function() {
+
+  gulp.src('src/static/*')
+    .pipe(cached('copyStatic'))
+    .pipe(gulp.dest('public/static/'));
 });
 
 
@@ -70,7 +78,10 @@ gulp.task('watch', function() {
 
   // 预处理 **表示各个层级
   gulp.watch('src/sass/**', ['sass']);
+
+  // 同步静态文件
   gulp.watch('src/img/**', ['copyImg']);
+  gulp.watch('src/static/**', ['copyStatic']);
 
 
   // 合并压缩
