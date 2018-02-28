@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   clean = require('gulp-clean'),
   minifyCss = require('gulp-minify-css'),
   cached = require('gulp-cached'),
+  fileSync = require('gulp-file-sync'),
   browserSync = require('browser-sync').create();
 
 
@@ -46,20 +47,30 @@ gulp.task('concatJs', function() {
 });
 
 // 同步图片
-gulp.task('copyImg', function() {
+/*gulp.task('copyImg', function() {
 
   gulp.src('src/img/*')
     .pipe(cached('copyImg'))
     .pipe(gulp.dest('public/img/'));
 });
-
+*/
 // 同步静态资源
-gulp.task('copyStatic', function() {
+/*gulp.task('copyStatic', function() {
 
   gulp.src('src/static/*')
     .pipe(cached('copyStatic'))
     .pipe(gulp.dest('public/static/'));
 });
+*/
+gulp.task('syncImg', function() {
+  fileSync('src/img/', 'public/img/', { recursive: false });
+  fileSync('src/static/', 'public/static/', { recursive: false });
+});
+
+gulp.task('syncStatic', function() {
+  fileSync('src/static/', 'public/static/', { recursive: false });
+});
+
 
 
 // 默认任务
@@ -80,8 +91,10 @@ gulp.task('watch', function() {
   gulp.watch('src/sass/**', ['sass']);
 
   // 同步静态文件
-  gulp.watch('src/img/**', ['copyImg']);
-  gulp.watch('src/static/**', ['copyStatic']);
+  // gulp.watch('src/img/**', ['copyImg']);
+  // gulp.watch('src/static/**', ['copyStatic']);
+  gulp.watch('src/img/**', ['syncImg']);
+  gulp.watch('src/static/**', ['syncStatic']);
 
 
   // 合并压缩
