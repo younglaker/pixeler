@@ -4,7 +4,7 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
-  clean = require('gulp-clean'),
+  // clean = require('gulp-clean'),
   minifyCss = require('gulp-minify-css'),
   cached = require('gulp-cached'),
   fileSync = require('gulp-file-sync'),
@@ -12,11 +12,10 @@ var gulp = require('gulp'),
 
 
 // 编译前清空
-gulp.task('clean', function() {
+/*gulp.task('clean', function() {
   gulp.src(['dist/', 'public'])
     .pipe(clean({ force: true }));
-});
-
+});*/
 
 
 // 编译sass，其中plumber是防止出错崩溃的插件
@@ -47,30 +46,14 @@ gulp.task('concatJs', function() {
 });
 
 // 同步图片
-/*gulp.task('copyImg', function() {
-
-  gulp.src('src/img/*')
-    .pipe(cached('copyImg'))
-    .pipe(gulp.dest('public/img/'));
-});
-*/
-// 同步静态资源
-/*gulp.task('copyStatic', function() {
-
-  gulp.src('src/static/*')
-    .pipe(cached('copyStatic'))
-    .pipe(gulp.dest('public/static/'));
-});
-*/
 gulp.task('syncImg', function() {
-  fileSync('src/img/', 'public/img/', { recursive: false });
-  fileSync('src/static/', 'public/static/', { recursive: false });
+  fileSync('src/img/', 'public/img/', { recursive: true }); // 递归对子文件执行
 });
 
+// 同步静态资源
 gulp.task('syncStatic', function() {
-  fileSync('src/static/', 'public/static/', { recursive: false });
+  fileSync('src/static/', 'public/static/', { recursive: true });
 });
-
 
 
 // 默认任务
@@ -91,11 +74,8 @@ gulp.task('watch', function() {
   gulp.watch('src/sass/**', ['sass']);
 
   // 同步静态文件
-  // gulp.watch('src/img/**', ['copyImg']);
-  // gulp.watch('src/static/**', ['copyStatic']);
   gulp.watch('src/img/**', ['syncImg']);
   gulp.watch('src/static/**', ['syncStatic']);
-
 
   // 合并压缩
   gulp.watch('dist/css/*.css', ['concatCss']);
