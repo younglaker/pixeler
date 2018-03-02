@@ -39,11 +39,13 @@ gulp.task('concatCss', function() {
 
 // 将所有js文件连接为一个文件并压缩，存到public/js
 gulp.task('concatJs', function() {
-  gulp.src(['dist/js/*.js'])
+  gulp.src(['src/js/*.js'])
     .pipe(concat('main.js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(uglify())
     .pipe(gulp.dest('public/js'));
 });
+
 
 // 同步图片
 gulp.task('syncImg', function() {
@@ -79,7 +81,7 @@ gulp.task('watch', function() {
 
   // 合并压缩
   gulp.watch('dist/css/*.css', ['concatCss']);
-  gulp.watch('dist/js/*.js', ['concatJs']);
+  gulp.watch('src/js/*.js', ['concatJs']);
 
   // 自动刷新
   gulp.watch('public/**', function() {
