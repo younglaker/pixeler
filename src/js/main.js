@@ -136,13 +136,10 @@ $(document).ready(function() {
    */
   function clearPixl(x, y) {
     var count;
-    // 清除拼豆
-    g_ctx.fillStyle = g_bg_color;
     g_ctx.beginPath();
     //　因为棋盘占了１px的线条，所以要调整位置
-    g_ctx.rect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
+    g_ctx.clearRect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
     g_ctx.closePath();
-    g_ctx.fill();
     // 1表示标记为已覆盖过颜色
     g_circle_data[x][y] = 1;
   }
