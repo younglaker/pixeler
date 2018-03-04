@@ -24,7 +24,6 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 移动端优化
 - [ ] 用纸的截图替换色块
 - [ ] hover更换布局时，显示实际盒子样式
-- [ ] <del>定制网站改用花的形状</del>
 - [x] 拼豆计数
 - [x] 画布坐标
 - [x] 自定义画布大小
@@ -43,7 +42,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 用EasyCanvas重写canvas功能
-- [ ] 工程化-sass、auto-reload
+- [x] 工程化-sass、auto-reload
 - [x] 分离坐标画布、拼豆画布
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
 - [x] 合并清除拼豆的代码

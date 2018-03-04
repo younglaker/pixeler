@@ -70,7 +70,7 @@ $(document).ready(function() {
   /*
    *  寻找点击位置
    */
-  function play(e) { //鼠标点击时发生
+  function drawPixler(e) { //鼠标点击时发生
     var x = parseInt((e.offsetX - g_half_grid_width) / g_grid_width); //计算鼠标点击的区域，e.offsetX是鼠标点击处在元素内的位置。如果点击了（55，55），那么就是点击了（1，1）的位置
     var y = parseInt((e.offsetY - g_half_grid_width) / g_grid_width);
     if (x < g_col && y < g_row) {
@@ -160,7 +160,7 @@ $(document).ready(function() {
    *  开始在画布上点击
    */
   O("#canvas").mousedown(function(e) {
-    play(e);
+    drawPixler(e);
   });
 
   /*
@@ -178,6 +178,9 @@ $(document).ready(function() {
     }
   });
 
+  /*
+   *  清空画布
+   */
   O(".clear_canvas").click(function() {
     var conf = confirm("是否确定清空？");
     if (conf == true) {
@@ -188,37 +191,17 @@ $(document).ready(function() {
     }
   });
 
+  /*
+   *  更换拼豆颜色
+   */
   $(".color_picker").minicolors({
     letterCase: 'uppercase'
   });
 
-  $(".bg_color").minicolors({
-    letterCase: 'uppercase',
-    hide: function() {
-      O("&body").setCss({ 'backgroundColor': $(this).val() });
-      g_bg_color = $(this).val();
 
-      for (var x = 0; x < g_col; x++) {
-        for (var y = 0; y < g_row; y++) {
-          if (g_circle_data[x][y] == 1) {
-            g_ctx.fillStyle = g_bg_color;
-            g_ctx.beginPath();
-            //　因为棋盘占了１px的线条，所以要调整位置
-            g_ctx.rect(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
-            g_ctx.closePath();
-            g_ctx.fill();
-          }
-        }
-      }
-    }
-    // 下面代码是延时确定颜色，可以做到实时更新颜色，上面只是在取色器关闭时执行
-    /*,
-    changeDelay: 500,
-    change: function(hex, opacity) {
-        O("&body").setCss({'backgroundColor': $(this).val()});
-    }*/
-  });
-
+  /*
+   *  更换拼豆形状
+   */
   $(".pindou_shape").change(function() {
     g_pindou_shape = $(".pindou_shape:checked").val();
   });
