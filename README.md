@@ -24,6 +24,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 移动端优化
 - [ ] 用纸的截图替换色块
 - [ ] hover更换布局时，显示实际盒子样式
+- [ ] 中英文切换
 - [x] 拼豆计数
 - [x] 画布坐标
 - [x] 自定义画布大小

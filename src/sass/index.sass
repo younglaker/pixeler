@@ -14,76 +14,46 @@ p
 li
   margin: 0 0 5px 0
 
+// 左边菜单
 .menu
   width: 195px
   float: left
   margin-right: 30px
 
+  .menu_ul
+    margin: 0 0 10px 0
+    padding: 5px
+    list-style: none
+    border: 1px #a2a8a8 solid
+    border-radius: 5px
+
+  .color_picker_block
+    li
+      margin-bottom: 10px
+      overflow: auto
+
+    .color_picker
+      &:hover
+      cursor: pointer
+
+  .clear_canvas
+    display: block
+
+  .siser_input
+    width: 30px
+
+
 .main
-  /* 	float: left*/
   margin: 15px 0
   overflow: scroll
   position: relative
+  
+  #canvas
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 10
 
-.menu_ul
-  margin: 0 0 10px 0
-  padding: 5px
-  list-style: none
-  border: 1px #a2a8a8 solid
-  border-radius: 5px
-
-.color_picker_block li,
-.siser li
-  margin-bottom: 10px
-  overflow: auto
-
-
-.color_picker
-  &:hover
-  cursor: pointer
-
-.color_box
-  width: 25px
-  float: left
-  margin-right: 10px
-  padding: 5px
-  border-radius: 5px
-
-.siser_btn
-  margin-right: 30px
-
-#colors_black
-  background: #000
-
-.color_count
-  width: 100%
-  float: left
-  text-align: center
-
-.clear_canvas
-  display: block
-
-.siser_input
-  width: 30px
-
-.siser_btn
-  float: left
-  padding: 1px 10px
-  background: #FFF
-  border-radius: 3px
-  cursor: pointer
-
-.color_picker_block .act,
-.siser .act
-  background: #42B9DF
-  color: #FFF
-
-#canvas
-  position: absolute
-  top: 0
-  left: 0
-  z-index: 10
-
-#canvas_coord
-  position: relative
-  z-index: 1
+  #canvas_coord
+    position: relative
+    z-index: 1
