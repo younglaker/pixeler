@@ -1,0 +1,1 @@
+import easycanvas from 'easycanvas';
