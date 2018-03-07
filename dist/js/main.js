@@ -25,7 +25,6 @@ $(document).ready(function() {
    *  页面加载完毕调用函数，初始化画布
    */
   function drawCanvasCoord() {
-    console.log('11');
     // 通过格子数目*格子宽度得到画布大小
     var x_width = g_col * g_grid_width,
       y_width = g_row * g_grid_width;
@@ -38,7 +37,8 @@ $(document).ready(function() {
     g_canvas.height = y_width + 100;
 
     // i从20开始，是为了留位置显示坐标
-    for (var i = 20; i <= y_width + 20; i += g_grid_width) { //绘制行
+    //绘制行
+    for (var i = 20; i <= y_width + 20; i += g_grid_width) {
       g_ctx_coord.text({ // 写行序号
         basic: [0, i - 20, (i - 20) / g_grid_width],
       }).line({ //画行线
@@ -49,13 +49,8 @@ $(document).ready(function() {
       });
     }
 
-    for (var i = 20; i <= x_width + 20; i += g_grid_width) { //绘制列
-      /*g_ctx_coord.beginPath();
-      g_ctx_coord.fillText((i - 20) / g_grid_width, i - 20, 10);
-      g_ctx_coord.moveTo(i, 20);
-      g_ctx_coord.lineTo(i, y_width + 20);
-      g_ctx_coord.closePath();
-      g_ctx_coord.stroke();*/
+    //绘制列
+    for (var i = 20; i <= x_width + 20; i += g_grid_width) {
 
       g_ctx_coord.text({ // 写列序号
         basic: [i - 20, 12, (i - 20) / g_grid_width],
@@ -65,7 +60,6 @@ $(document).ready(function() {
           [i, y_width + 20]
         ]
       });
-
 
     }
 
