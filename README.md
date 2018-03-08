@@ -43,6 +43,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 用EasyCanvas重写canvas功能
+- [ ] EasyCanvas的字体不能调大（font weight 有影响）、画布线条颜色太淡了（目前只能用 lineWidth 2 来加深）
 - [x] 工程化-sass、auto-reload
 - [x] 分离坐标画布、拼豆画布
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
@@ -50,50 +51,59 @@ A website designing pixel picture, based on HTML5 canvas.
 
 ## Change log
 
+### 20180307
+引入自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas)。  
+Import [Easycanvas.js](https://github.com/younglaker/EasyCanvas), a canvas libray written by myselve.
+
+
 ### 20180221
-index.html：分离坐标画布、拼豆画布
-index.html: Add- Sperate coordinate canvas and drawing canvas.
+分离坐标画布、拼豆画布  
+Sperate coordinate canvas and drawing canvas.
+
+### 20180221
+分离坐标画布、拼豆画布，主分支不再开发 clj，仅在备份分支内保留。  
+Sperate coordinate canvas and drawing canvas.
 
 ### 20151023
-index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。
+index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。  
 index.html: Fix- Set the same color of deleted pindou as background color.
 
 ### 20151018
-index.html：根据长宽格子数自动调整画布大小。
+index.html：根据长宽格子数自动调整画布大小。  
 index.html: Adjust canvas size when change the grid count.
 
 ### 20151016
-index.html：调整格子宽度和代码灵活性。
+index.html：调整格子宽度和代码灵活性。  
 index.html: Adjust grid width.
 
 ### 20151006
-index.html：可以自定义背景色。
+index.html：可以自定义背景色。  
 index.html: Use color picker to change the background color.
 
 ### 20151005
-index.html：使用取色器自定义拼豆颜色。
+index.html：使用取色器自定义拼豆颜色。  
 index.html: Use color picker to change the color.
 
 ### 20151003
-clj.htm：三栏布局。
+clj.htm：三栏布局。  
 clj.htm：New layout.
 
 ### 20151001
-clj.htm：添加所有颜色的拼豆，新增帮助和联系。
+clj.htm：添加所有颜色的拼豆，新增帮助和联系。  
 clj.htm：Add all color.Add help and contact block.
 
 ### 20150927
-clj.htm：改变行列数。
+clj.htm：改变行列数。  
 clj.htm: Change the row and column.
 
 ### 20150921
-拼豆计数。
+拼豆计数。  
 Count the color.
 
 ### 20150916
-能更换拼豆颜色。
+能更换拼豆颜色。  
 Change the color.
 
 ### 20150911
-实现绘制、清除拼豆。
+实现绘制、清除拼豆。  
 Draw and clear pixels.
