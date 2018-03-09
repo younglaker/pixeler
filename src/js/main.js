@@ -77,7 +77,7 @@ $(document).ready(function() {
     }
 
     // 把颜色计数全部清空
-    O(".color_count").html("0");
+    $(".color_count").html("0");
   }
 
   /*
@@ -163,6 +163,40 @@ $(document).ready(function() {
     g_circle_data[x][y] = 1;
   }
 
+
+  /*
+   *  调色盘插件，更换拼豆颜色
+   */
+  $(".color_picker").minicolors({
+    letterCase: 'uppercase'
+  });
+
+
+  /*
+   *  更换拼豆形状
+   */
+  $(".pindou_shape").change(function() {
+    g_pindou_shape = $(".pindou_shape:checked").val();
+  });
+
+  /*
+   *  清除画布
+   */
+  function clearCanvas() {
+    g_ctx.clean(0, 0, g_canvas_coord.width, g_canvas_coord.height);
+  }
+
+  /*
+   *  清空画布
+   */
+  $(".clear_canvas").click(function() {
+    var conf = confirm("是否确定清空？");
+    if (conf == true) {
+      clearCanvas();
+    } else {
+      return false;
+    }
+  });
 
 
 });

@@ -43,18 +43,23 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
 - [ ] 用EasyCanvas重写canvas功能
-- [ ] EasyCanvas的字体不能调大（font weight 有影响）、画布线条颜色太淡了（目前只能用 lineWidth 2 来加深）
 - [x] 工程化-sass、auto-reload
 - [x] 分离坐标画布、拼豆画布
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
 - [x] 合并清除拼豆的代码
 
+## Bugs
+
+- [ ] 调色盘插件失效
+- [ ] EasyCanvas的字体不能调大（font weight 有影响）、画布线条颜色太淡了（目前只能用 lineWidth 2 来加深）
+- [ ] Github 在线版本 jQuery 引入问题，cdn 不起作用
+
+
 ## Change log
 
 ### 20180307
 引入自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas)。  
-Import [Easycanvas.js](https://github.com/younglaker/EasyCanvas), a canvas libray written by myselve.
-
+Import [Easycanvas.js](https://github.com/younglaker/EasyCanvas), a canvas libray written by myselves.
 
 ### 20180221
 分离坐标画布、拼豆画布  
