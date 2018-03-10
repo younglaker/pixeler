@@ -40,8 +40,7 @@ $(document).ready(function() {
     //绘制行
     for (var i = 20; i <= y_width + 20; i += g_grid_width) {
       g_ctx_coord.text({ // 写行序号
-        basic: [0, i - 20, (i - 20) / g_grid_width],
-        font: "14px Arial Black 500"
+        basic: [0, i - 20, (i - 20) / g_grid_width]
       }).line({ //画行线
         basic: [
           [20, i],
@@ -55,7 +54,7 @@ $(document).ready(function() {
     for (var i = 20; i <= x_width + 20; i += g_grid_width) {
 
       g_ctx_coord.text({ // 写列序号
-        basic: [i - 20, 12, (i - 20) / g_grid_width],
+        basic: [i - 20, 12, (i - 20) / g_grid_width]
       }).line({ //画列线
         basic: [
           [i, 20],
@@ -83,7 +82,7 @@ $(document).ready(function() {
   /*
    *  开始在画布上点击
    */
-  O("#canvas").mousedown(function(e) {
+  $("#canvas").mousedown(function(e) {
     drawPixler(e);
   });
 
@@ -197,6 +196,23 @@ $(document).ready(function() {
       return false;
     }
   });
+
+
+  /*
+   *  更换画布大小
+   */
+  $(".siser_ok").click(function() {
+    var conf = confirm("更换画布会清空拼豆，是否确定？");
+    if (conf == true) {
+      g_col = $(".siser_col").val();
+      g_row = $(".siser_row").val();
+      g_ctx_coord.clean(0, 0, g_canvas.width, g_canvas.height);
+      drawCanvasCoord(g_col, g_row);
+    } else {
+      return false;
+    }
+  });
+
 
 
 });
