@@ -6,7 +6,6 @@ A website designing pixel picture, based on HTML5 canvas.
 
 ## Function To-Do
 
-- [ ] 自定义网格颜色
 - [ ] 自定义网格是否显示
 - [ ] LocalStorage保存图案历史
 - [ ] 虚化画布线条
@@ -24,6 +23,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 移动端优化
 - [ ] 用纸的截图替换色块
 - [ ] hover更换布局时，显示实际盒子样式
+- [ ] ~~自定义网格颜色~~
 - [ ] 中英文切换
 - [x] 拼豆计数
 - [x] 画布坐标
@@ -50,12 +50,16 @@ A website designing pixel picture, based on HTML5 canvas.
 
 ## Bugs
 
-- [ ] 调色盘插件失效
+- [x] 调色盘插件失效
 - [ ] EasyCanvas的字体不能调大（font weight 有影响）、画布线条颜色太淡了（目前只能用 lineWidth 2 来加深）
 - [ ] Github 在线版本 jQuery 引入问题，cdn 不起作用
 
 
 ## Change log
+
+### 20180311
+完成用自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas) 重构代码。  
+Finish rewritten by [Easycanvas.js](https://github.com/younglaker/EasyCanvas).
 
 ### 20180307
 引入自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas)。  
