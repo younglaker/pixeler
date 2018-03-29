@@ -13,7 +13,6 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 画布放大缩小
 - [ ] 像素形状可选圆形、方块，并且重新绘制画布上的拼豆
 - [ ] 选区功能（参照PS）
-- [ ] 生成图片并保存分享
 - [ ] 拼豆图纸库
 - [ ] 滚动条样式优化
 - [ ] 界面优化（像素风格）
@@ -25,6 +24,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] hover更换布局时，显示实际盒子样式
 - [ ] ~~自定义网格颜色~~
 - [ ] 中英文切换
+- [x] 生成图片并保存
 - [x] 拼豆计数
 - [x] 画布坐标
 - [x] 自定义画布大小
@@ -42,7 +42,7 @@ A website designing pixel picture, based on HTML5 canvas.
 
 - [ ] 把绘图的点击事件改为keydown/keyup，连续绘图
 - [ ] 切换拼豆形状时，把之前形状替换成现在的形状
-- [ ] 用EasyCanvas重写canvas功能
+- [x] 用EasyCanvas重写canvas功能
 - [x] 工程化-sass、auto-reload
 - [x] 分离坐标画布、拼豆画布
 - [x] 封装Canvas各种绘图方法 —— 已封装成库 https://github.com/younglaker/EasyCanvas
@@ -56,6 +56,10 @@ A website designing pixel picture, based on HTML5 canvas.
 
 
 ## Change log
+
+### 20180329
+实现保存绘图到本地。  
+Save canvas as image to local.
 
 ### 20180311
 完成用自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas) 重构代码。  
