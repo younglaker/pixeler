@@ -11,7 +11,8 @@ $(document).ready(function() {
   var g_grid_width = 34; // 画布格子宽度
   var g_half_grid_width = g_grid_width / 2; // 画布格子宽度的一半
   var g_circle_color = $('.color_picker').val(); // 默认拼豆颜色
-  var g_pindou_shape = $('.pindou_shape:checked').val();
+  var g_pindou_shape = $('.pindou_shape:checked').val(); // 拼豆形状：方形(默认)、圆形
+  var g_pindou_tool = $('.pindou_tool:checked').val(); // 绘制工具：画笔（默认）、橡皮擦
   var g_col = $('.siser_col').val(),
     g_row = $('.siser_row').val(); // g_col:列数/长，g_row:行数/宽0
 
@@ -37,7 +38,7 @@ $(document).ready(function() {
     g_canvas.height = y_width + 100;
 
     // i从20开始，是为了留位置显示坐标
-    //绘制行
+    // 绘制行
     for (var i = 20; i <= y_width + 20; i += g_grid_width) {
       g_ctx_coord.text({ // 写行序号
         basic: [0, i - 20, (i - 20) / g_grid_width]
@@ -85,7 +86,6 @@ $(document).ready(function() {
   $("#canvas").mousedown(function(e) {
     drawPixler(e);
   });
-
 
 
   /*
@@ -212,6 +212,16 @@ $(document).ready(function() {
       return false;
     }
   });
+
+  /*
+   *  保存成图片
+   */
+  $("#save_canvas").click(function() {
+    g_ctx.toImg('save_canvas', $("#pic_name").val());
+  });
+
+
+
 
 
 
