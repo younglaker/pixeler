@@ -157,7 +157,7 @@ $(document).ready(function() {
    */
   function clearPixl(x, y) {
     var count;
-    g_ctx.clean(20 + g_grid_width * x + 1, 20 + g_grid_width * y + 1, g_grid_width - 2, g_grid_width - 2);
+    g_ctx.cleanRect();
     // 1表示标记为已覆盖过颜色
     g_circle_data[x][y] = 1;
   }
@@ -182,7 +182,7 @@ $(document).ready(function() {
    *  清除画布
    */
   function clearCanvas() {
-    g_ctx.clean(0, 0, g_canvas_coord.width, g_canvas_coord.height);
+    g_ctx.cleanRect(0, 0, g_canvas_coord.width, g_canvas_coord.height);
   }
 
   /*
@@ -206,7 +206,7 @@ $(document).ready(function() {
     if (conf == true) {
       g_col = $(".siser_col").val();
       g_row = $(".siser_row").val();
-      g_ctx_coord.clean(0, 0, g_canvas.width, g_canvas.height);
+      g_ctx_coord.cleanRect(0, 0, g_canvas.width, g_canvas.height);
       drawCanvasCoord(g_col, g_row);
     } else {
       return false;
@@ -219,10 +219,6 @@ $(document).ready(function() {
   $("#save_canvas").click(function() {
     g_ctx.toImg('save_canvas', $("#pic_name").val());
   });
-
-
-
-
 
 
 });
