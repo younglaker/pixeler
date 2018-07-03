@@ -1,1 +1,261 @@
-$(document).ready(function(){var n=document.getElementById("canvas_coord"),i=new EasyCanvas("canvas_coord"),t=document.getElementById("canvas"),s=EasyCanvas("canvas"),l=[],v=34,f=v/2,u=$(".color_picker").val(),h=$(".pindou_shape:checked").val(),d=($(".pindou_tool:checked").val(),$(".siser_col").val()),_=$(".siser_row").val();function e(){var e=d*v,a=_*v;n.width=e+100,n.height=a+100,t.width=e+100,t.height=a+100;for(var c=20;c<=a+20;c+=v)i.text({basic:[0,c-20,(c-20)/v]}).line({basic:[[20,c],[e+20,c]],strokeColor:"#000"});for(c=20;c<=e+20;c+=v)i.text({basic:[c-20,12,(c-20)/v]}).line({basic:[[c,20],[c,a+20]]});l=[];for(var o=0;o<d;o++){l[o]=[];for(var r=0;r<_;r++)l[o][r]=0}$(".color_count").html("0")}function p(e,a){s.cleanRect(),l[e][a]=1}e(),$("#canvas").mousedown(function(e){!function(e){var a=parseInt((e.offsetX-f)/v),c=parseInt((e.offsetY-f)/v);{if(!(a<d&&c<_))return;if("rectangle"==h){if(0!=l[a][c]&&1!=l[a][c])return p(a,c);n=a,i=c,u=$(".color_picker").val(),0<=n&&n<d&&0<=i&&i<_&&(s.rect({basic:[20+v*n+2,20+v*i+2,v-4,v-4],strokeColor:"transparent",fillColor:u}),l[n][i]=u)}else{if(0!=l[a][c]&&1!=l[a][c])return p(a,c);o=a,r=c,u=$(".color_picker").val(),0<=o&&o<d&&0<=r&&r<_&&(s.arc({basic:[20+f*(1+2*o),20+f*(1+2*r),f-4,0,2*Math.PI],strokeColor:u,fillColor:u}),l[o][r]=u)}}var o,r;var n,i}(e)}),$(".color_picker").minicolors({letterCase:"uppercase"}),$(".pindou_shape").change(function(){h=$(".pindou_shape:checked").val()}),$(".clear_canvas").click(function(){if(1!=confirm("是否确定清空？"))return!1;s.cleanRect(0,0,n.width,n.height)}),$(".siser_ok").click(function(){if(1!=confirm("更换画布会清空拼豆，是否确定？"))return!1;d=$(".siser_col").val(),_=$(".siser_row").val(),i.cleanRect(0,0,t.width,t.height),e()}),$("#save_canvas").click(function(){s.toImg("save_canvas",$("#pic_name").val())})});
+$(document).ready(function() {
+  // 坐标画布
+  var g_canvas_coord = document.getElementById("canvas_coord"); //普通 dom 元素
+  var g_ctx_coord = new EasyCanvas('canvas_coord'); // EasyCanvas插件对象
+
+  // 拼豆画布
+  var g_canvas = document.getElementById("canvas");
+  var g_ctx = EasyCanvas('canvas');
+
+  var g_grid_data = []; //这个为画布的二维数组用来保存画布信息，初始化0为没有填充的，其他值为填充颜色的值
+  var g_grid_width = 34; // 画布格子宽度
+  var g_half_grid_width = g_grid_width / 2; // 画布格子宽度的一半
+  var g_grid_color = $('.color_picker').val(); // 默认拼豆颜色
+  var g_shape = $('.pindou_shape:checked').val(); // 拼豆形状：方形(默认)、圆形
+  var g_pindou_tool = $('.pindou_tool:checked').val(); // 绘制工具：画笔（默认）、橡皮擦
+  var g_col = $('.siser_col').val();
+  var g_row = $('.siser_row').val(); // g_col:列数/长，g_row:行数/宽0
+
+	console.log('g_col', g_col)
+	console.log('g_row', g_row)
+  /*
+   *  初始化坐标画布
+   */
+  drawCanvasCoord();
+  /**
+   * 初始化数据模型
+   */
+  resetGridData();
+
+  /*
+   *  绘制坐标画布
+   *  页面加载完毕调用函数，初始化画布
+   */
+  function drawCanvasCoord() {
+    // 通过格子数目*格子宽度得到画布大小
+    var x_width = g_col * g_grid_width;
+    var y_width = g_row * g_grid_width;
+
+    // 动态设置画布大小
+    g_canvas_coord.width = x_width + 100;
+    g_canvas_coord.height = y_width + 100;
+
+    g_canvas.width = x_width + 100;
+    g_canvas.height = y_width + 100;	
+
+
+		//TODO: 此处画线并没有修正，所以画出的格子线不是1px的线。如果想画1px的线，需要对线的坐标做0.5px的修正
+    // i从20开始，是为了留位置显示坐标
+    // 绘制行
+    for (var i = 20; i <= y_width + 20; i += g_grid_width) {
+      g_ctx_coord.text({ // 写行序号
+        basic: [0, i - 20, (i - 20) / g_grid_width]
+      }).line({ //画行线
+        basic: [
+          [20, i],
+          [x_width + 20, i]
+        ],
+        strokeColor: "#000"
+      });
+    }
+
+    //绘制列
+    for (var i = 20; i <= x_width + 20; i += g_grid_width) {
+      g_ctx_coord.text({ // 写列序号
+        basic: [i - 20, 12, (i - 20) / g_grid_width]
+      }).line({ //画列线
+        basic: [
+          [i, 20],
+          [i, y_width + 20]
+        ]
+      });
+    }
+
+  }
+  
+  //  初始化画布对应的二维数组
+  // 0: 格子初始状态
+  // 颜色值: 格子颜色值
+  function resetGridData() {
+    g_grid_data = [];
+    for (var x = 0; x < g_col; x++) {
+      g_grid_data[x] = [];
+      for (var y = 0; y < g_row; y++) {
+        g_grid_data[x][y] = undefined;
+      }
+    }
+  }
+
+  /*
+   *  开始在画布上点击
+   */
+  $("#canvas").mousedown(function(e) {
+    drawPixler(e);
+  });
+
+
+  /*
+   *  寻找点击位置
+   */
+  function drawPixler(e) { //鼠标点击时发生
+  	// 这里的x y 从0开始
+    var x = parseInt((e.offsetX - 20) / g_grid_width); 
+    var y = parseInt((e.offsetY - 20) / g_grid_width);
+    
+    if (x < g_col && y < g_row) {
+    	var grid = g_grid_data[x][y]
+    	if (!grid) {	// 没填充过
+    		var color = $('.color_picker').val()
+    		grid = new Grid(x, y, color, g_shape)
+    		g_grid_data[x][y] = grid
+    		drawGrid(grid)
+    	} else {	// 填充过
+    		clearPixl(x, y);	
+    		redrawGrids();
+    	}
+    } else {
+      return false;
+    }
+  }
+  
+  
+  /**
+   * 重绘所有已经填充过颜色的格子
+   */
+  function redrawGrids() {
+  	for (var i = 0; i < g_grid_data.length; i++) {
+  		var item = g_grid_data[i]
+  		for (var j = 0; j < item.length; j++) {
+  			if (item[j]) {
+  				drawGrid(item[j])
+  			}
+  		}
+  	}
+  }
+  
+  /**
+   * 绘制单个格子
+   */
+  function drawGrid(grid) {
+  	if(grid.shape == 'rectangle') {
+			drawRect(grid.x, grid.y, grid.color);
+		} else {
+			drawCircle(grid.x, grid.y, grid.color);
+		}
+  }
+
+
+  /*
+   *  绘制圆形拼豆
+   */
+  function drawCircle(x, y, color) { //参数为：数组位置
+    if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
+      // 所记录颜色
+      g_ctx.arc({
+        basic: [20 + g_half_grid_width * (1 + 2 * x), 20 + g_half_grid_width * (1 + 2 * y), g_half_grid_width - 4, 0, Math.PI * 2],
+        strokeColor: color,
+        fillColor: color
+      });
+    }
+  }
+
+  /*
+   *  绘制方形拼豆
+   */
+  function drawRect(x, y, color) { //参数为：数组位置
+    if (x >= 0 && x < g_col && y >= 0 && y < g_row) {
+      g_ctx.rect({
+        basic: [20 + g_grid_width * x + 2, 20 + g_grid_width * y + 2, g_grid_width - 4, g_grid_width - 4],
+        strokeColor: "transparent",
+        fillColor: color
+      });
+    }
+  }
+
+  /*
+   *  清除拼豆
+   */
+  function clearPixl(x, y) {
+    var count;
+    g_ctx.clean();
+    g_grid_data[x][y] = undefined;
+  }
+
+
+  /*
+   *  调色盘插件，更换拼豆颜色
+   */
+  $(".color_picker").minicolors({
+    letterCase: 'uppercase'
+  });
+
+
+  /*
+   *  更换拼豆形状
+   */
+  $(".pindou_shape").change(function() {
+    g_shape = $(".pindou_shape:checked").val();
+  });
+
+  /*
+   *  清除画布
+   */
+  function clearCanvas() {
+    g_ctx.clean(0, 0, g_canvas_coord.width, g_canvas_coord.height);
+  }
+
+  /*
+   *  清空画布
+   */
+  $(".clear_canvas").click(function() {
+    var conf = confirm("是否确定清空？");
+    if (conf == true) {
+      clearCanvas();
+      resetGridData()
+    } else {
+      return false;
+    }
+  });
+
+
+  /*
+   *  更换画布大小
+   */
+  $(".siser_ok").click(function() {
+    var conf = confirm("更换画布会清空拼豆，是否确定？");
+    if (conf == true) {
+      g_col = $(".siser_col").val();
+      g_row = $(".siser_row").val();
+      g_ctx_coord.clean(0, 0, g_canvas.width, g_canvas.height);
+      drawCanvasCoord(g_col, g_row);
+    } else {
+      return false;
+    }
+  });
+
+  /*
+   *  保存成图片
+   */
+  $("#save_canvas").click(function() {
+    g_ctx.toImg('save_canvas', $("#pic_name").val());
+  });
+  
+  
+  /**
+   * 格子的数据模型
+   * @param {Object} x 坐标，数组索引
+   * @param {Object} y 坐标，数组索引
+   * @param {Object} color 颜色
+   * @param {Object} shape 形状
+   */
+  function Grid(x, y, color, shape) {
+  	this.x = x
+  	this.y = y
+  	this.color = color
+  	this.shape = shape
+  }
+
+
+});
+
+

@@ -40,10 +40,14 @@ gulp.task('concatCss', function() {
 // 将所有js文件连接为一个文件并压缩，存到public/js
 gulp.task('concatJs', function() {
   gulp.src(['src/js/*.js'])
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('public/js'));
+  	.pipe(concat('main.js'))
+  	.pipe(gulp.dest('dist/js'))
+  	.pipe(gulp.dest('public/js'));
+  	
+//  .pipe(concat('main.js'))
+//  .pipe(gulp.dest('dist/js'))
+//  .pipe(uglify())
+//  .pipe(gulp.dest('public/js'));
 });
 
 
@@ -59,7 +63,7 @@ gulp.task('syncStatic', function() {
 
 
 // 默认任务
-gulp.task('default', ['watch']);
+gulp.task('default', ['sass', 'concatCss', 'concatJs', 'syncImg', 'syncStatic']);
 
 // 监听任务
 gulp.task('watch', function() {
