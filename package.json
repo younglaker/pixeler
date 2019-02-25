@@ -4,6 +4,8 @@
   "description": "A tool to design pixel picture.",
   "main": "index.js",
   "scripts": {
+  	"build": "gulp",
+  	"dev": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
