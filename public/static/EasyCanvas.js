@@ -535,6 +535,44 @@
       }
 
       return this;
+    },
+        /*
+     *  Clean the whole or a part of canvas
+     */
+    cleanRect: function() {
+      if (arguments[0]) {
+        this.ctx.clearRect(arguments[0], arguments[1], arguments[2], arguments[3]);
+      } else {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+      }
+
+      return this;
+    },
+
+    /*
+     *  Clean the a arc part of canvas
+     */
+    cleanArc: function(x, y, radius, startAngle, endAngle, anticlockwise) {
+      if (arguments[0]) {
+        this.ctx.clearArc(x, y, radius, startAngle, endAngle, anticlockwise);
+      }
+
+      return this;
+    },
+
+    /*
+     *  Sav canvas to image
+     */
+    toImg: function(save_btn_id, img_name) {
+      if (save_btn_id) {
+        var button = document.getElementById(save_btn_id);
+        img_name = img_name || "mypainting";
+        canvas = this.canvas;
+        button.href = canvas.toDataURL("image/png", 1.0);
+        button.download = img_name;
+      }
+
+      return this;
     }
   };
 

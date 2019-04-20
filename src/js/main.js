@@ -15,6 +15,7 @@ $(document).ready(function() {
   var g_pindou_tool = $('.pindou_tool:checked').val(); // 绘制工具：画笔（默认）、橡皮擦
   var g_col = $('.siser_col').val();
   var g_row = $('.siser_row').val(); // g_col:列数/长，g_row:行数/宽0
+  var draw_tag = 0;
 
 	console.log('g_col', g_col)
 	console.log('g_row', g_row)
@@ -41,7 +42,7 @@ $(document).ready(function() {
     g_canvas_coord.height = y_width + 100;
 
     g_canvas.width = x_width + 100;
-    g_canvas.height = y_width + 100;	
+    g_canvas.height = y_width + 100;
 
 
 		//TODO: 此处画线并没有修正，所以画出的格子线不是1px的线。如果想画1px的线，需要对线的坐标做0.5px的修正
@@ -72,7 +73,7 @@ $(document).ready(function() {
     }
 
   }
-  
+
   //  初始化画布对应的二维数组
   // 0: 格子初始状态
   // 颜色值: 格子颜色值
@@ -89,36 +90,52 @@ $(document).ready(function() {
   /*
    *  开始在画布上点击
    */
+  // 用draw_tag标记现在是否mousedown
+  // mousedown的时候再通过g_pindou_tool来画图或擦掉
   $("#canvas").mousedown(function(e) {
-    drawPixler(e);
-  });
+    draw_tag = 1;
+    if (draw_tag == 1 && g_pindou_tool == 'pen') {
+      drawPixler(e);
+    }
+    else if (draw_tag == 1 && g_pindou_tool == 'eraser') {
+      clearPixl(e);
+    }
+  }).mouseup(function(){
+    draw_tag = 0;
+  }).mousemove(function(e){
 
+    // 画图
+    if (draw_tag == 1 && g_pindou_tool == 'pen') {
+      drawPixler(e);
+    }
+    // 擦掉
+    else if (draw_tag == 1 && g_pindou_tool == 'eraser') {
+      clearPixl(e);
+    }
+
+  });
 
   /*
    *  寻找点击位置
    */
   function drawPixler(e) { //鼠标点击时发生
-  	// 这里的x y 从0开始
-    var x = parseInt((e.offsetX - 20) / g_grid_width); 
+  	// 这里的x y 从0开始，存放点击的位置所在的格子的标号（数组下标）
+    var x = parseInt((e.offsetX - 20) / g_grid_width);
     var y = parseInt((e.offsetY - 20) / g_grid_width);
-    
+
     if (x < g_col && y < g_row) {
     	var grid = g_grid_data[x][y]
-    	if (!grid) {	// 没填充过
-    		var color = $('.color_picker').val()
-    		grid = new Grid(x, y, color, g_shape)
-    		g_grid_data[x][y] = grid
-    		drawGrid(grid)
-    	} else {	// 填充过
-    		clearPixl(x, y);	
-    		redrawGrids();
-    	}
+  		var color = $('.color_picker').val()
+  		grid = new Grid(x, y, color, g_shape)
+  		g_grid_data[x][y] = grid
+  		drawGrid(grid)
+
     } else {
       return false;
     }
   }
-  
-  
+
+
   /**
    * 重绘所有已经填充过颜色的格子
    */
@@ -132,7 +149,7 @@ $(document).ready(function() {
   		}
   	}
   }
-  
+
   /**
    * 绘制单个格子
    */
@@ -175,9 +192,14 @@ $(document).ready(function() {
   /*
    *  清除拼豆
    */
-  function clearPixl(x, y) {
-    var count;
-    g_ctx.clean();
+
+  function clearPixl(e) {
+    // 算出点击的位置是哪个格子（数组下标）
+    var x = parseInt((e.offsetX - 20) / g_grid_width);
+    var y = parseInt((e.offsetY - 20) / g_grid_width);
+
+    // 通过格子的位置（数组下标）算出这个位置与画步（0,0）位置的距离
+    g_ctx.cleanRect(20 + g_half_grid_width * (2 * x), 20 + g_half_grid_width * (2 * y), g_grid_width, g_grid_width);
     g_grid_data[x][y] = undefined;
   }
 
@@ -198,10 +220,17 @@ $(document).ready(function() {
   });
 
   /*
+   *  更换工具
+   */
+  $(".pindou_tool").change(function() {
+    g_pindou_tool = $(".pindou_tool:checked").val();
+  });
+
+  /*
    *  清除画布
    */
   function clearCanvas() {
-    g_ctx.clean(0, 0, g_canvas_coord.width, g_canvas_coord.height);
+    g_ctx.cleanRect(0, 0, g_canvas_coord.width, g_canvas_coord.height);
   }
 
   /*
@@ -226,7 +255,7 @@ $(document).ready(function() {
     if (conf == true) {
       g_col = $(".siser_col").val();
       g_row = $(".siser_row").val();
-      g_ctx_coord.clean(0, 0, g_canvas.width, g_canvas.height);
+      g_ctx_coord.cleanRect(0, 0, g_canvas.width, g_canvas.height);
       drawCanvasCoord(g_col, g_row);
     } else {
       return false;
@@ -239,8 +268,8 @@ $(document).ready(function() {
   $("#save_canvas").click(function() {
     g_ctx.toImg('save_canvas', $("#pic_name").val());
   });
-  
-  
+
+
   /**
    * 格子的数据模型
    * @param {Object} x 坐标，数组索引

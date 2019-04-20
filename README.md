@@ -9,7 +9,7 @@ A website designing pixel picture, based on HTML5 canvas.
 - [ ] 自定义网格是否显示
 - [ ] LocalStorage保存图案历史
 - [ ] 虚化画布线条
-- [ ] 长按鼠标连续绘制
+- [x] 长按鼠标连续绘制
 - [ ] 画布放大缩小
 - [ ] 像素形状可选圆形、方块，并且重新绘制画布上的拼豆
 - [ ] 选区功能（参照PS）
@@ -57,66 +57,70 @@ A website designing pixel picture, based on HTML5 canvas.
 
 ## Change log
 
+### 20190419
+实现长按鼠标连续绘制。
+Continiously draw when mouse down and move.
+
 ### 20180329
-实现保存绘图到本地。  
+实现保存绘图到本地。
 Save canvas as image to local.
 
 ### 20180311
-完成用自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas) 重构代码。  
+完成用自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas) 重构代码。
 Finish rewritten by [Easycanvas.js](https://github.com/younglaker/EasyCanvas).
 
 ### 20180307
-引入自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas)。  
+引入自己的 Canvas 绘图库 [Easycanvas.js](https://github.com/younglaker/EasyCanvas)。
 Import [Easycanvas.js](https://github.com/younglaker/EasyCanvas), a canvas libray written by myselves.
 
 ### 20180221
-分离坐标画布、拼豆画布  
+分离坐标画布、拼豆画布
 Sperate coordinate canvas and drawing canvas.
 
 ### 20180221
-分离坐标画布、拼豆画布，主分支不再开发 clj，仅在备份分支内保留。  
+分离坐标画布、拼豆画布，主分支不再开发 clj，仅在备份分支内保留。
 Sperate coordinate canvas and drawing canvas.
 
 ### 20151023
-index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。  
+index.html：修复——更换背景色时，调整已删除的拼豆的位置的颜色与背景色一致。
 index.html: Fix- Set the same color of deleted pindou as background color.
 
 ### 20151018
-index.html：根据长宽格子数自动调整画布大小。  
+index.html：根据长宽格子数自动调整画布大小。
 index.html: Adjust canvas size when change the grid count.
 
 ### 20151016
-index.html：调整格子宽度和代码灵活性。  
+index.html：调整格子宽度和代码灵活性。
 index.html: Adjust grid width.
 
 ### 20151006
-index.html：可以自定义背景色。  
+index.html：可以自定义背景色。
 index.html: Use color picker to change the background color.
 
 ### 20151005
-index.html：使用取色器自定义拼豆颜色。  
+index.html：使用取色器自定义拼豆颜色。
 index.html: Use color picker to change the color.
 
 ### 20151003
-clj.htm：三栏布局。  
+clj.htm：三栏布局。
 clj.htm：New layout.
 
 ### 20151001
-clj.htm：添加所有颜色的拼豆，新增帮助和联系。  
+clj.htm：添加所有颜色的拼豆，新增帮助和联系。
 clj.htm：Add all color.Add help and contact block.
 
 ### 20150927
-clj.htm：改变行列数。  
+clj.htm：改变行列数。
 clj.htm: Change the row and column.
 
 ### 20150921
-拼豆计数。  
+拼豆计数。
 Count the color.
 
 ### 20150916
-能更换拼豆颜色。  
+能更换拼豆颜色。
 Change the color.
 
 ### 20150911
-实现绘制、清除拼豆。  
+实现绘制、清除拼豆。
 Draw and clear pixels.
