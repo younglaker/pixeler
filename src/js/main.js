@@ -227,7 +227,17 @@ $(document).ready(function() {
    *  清除画布
    */
   function clearCanvas() {
-    g_ctx.cleanRect(0, 0, g_canvas_coord.width, g_canvas_coord.height);
+    // 通过格子数目*格子宽度得到画布大小
+    var x_width = g_col * g_grid_width;
+    var y_width = g_row * g_grid_width;
+
+    // 动态设置画布大小
+
+    g_canvas.width = x_width + 100;
+    g_canvas.height = y_width + 100;
+
+    g_ctx.cleanRect(0, 0, g_canvas.width, g_canvas.height);
+    resetGridData();
   }
 
   /*
