@@ -17,8 +17,6 @@ $(document).ready(function() {
   var g_row = $('.siser_row').val(); // g_col:列数/长，g_row:行数/宽0
   var draw_tag = 0;
 
-	console.log('g_col', g_col)
-	console.log('g_row', g_row)
   /*
    *  初始化坐标画布
    */
@@ -45,7 +43,7 @@ $(document).ready(function() {
     g_canvas.height = y_width + 100;
 
 
-		//TODO: 此处画线并没有修正，所以画出的格子线不是1px的线。如果想画1px的线，需要对线的坐标做0.5px的修正
+    //TODO: 此处画线并没有修正，所以画出的格子线不是1px的线。如果想画1px的线，需要对线的坐标做0.5px的修正
     // i从20开始，是为了留位置显示坐标
     // 绘制行
     for (var i = 20; i <= y_width + 20; i += g_grid_width) {
@@ -119,16 +117,15 @@ $(document).ready(function() {
    *  寻找点击位置
    */
   function drawPixler(e) { //鼠标点击时发生
-  	// 这里的x y 从0开始，存放点击的位置所在的格子的标号（数组下标）
+    // 这里的x y 从0开始，存放点击的位置所在的格子的标号（数组下标）
     var x = parseInt((e.offsetX - 20) / g_grid_width);
     var y = parseInt((e.offsetY - 20) / g_grid_width);
-
     if (x < g_col && y < g_row) {
-    	var grid = g_grid_data[x][y]
-  		var color = $('.color_picker').val()
-  		grid = new Grid(x, y, color, g_shape)
-  		g_grid_data[x][y] = grid
-  		drawGrid(grid)
+      var grid = g_grid_data[x][y];
+      var color = $('.color_picker').val();
+      grid = new Grid(x, y, color, g_shape);
+      g_grid_data[x][y] = grid;
+      drawGrid(grid);
 
     } else {
       return false;
@@ -140,25 +137,25 @@ $(document).ready(function() {
    * 重绘所有已经填充过颜色的格子
    */
   function redrawGrids() {
-  	for (var i = 0; i < g_grid_data.length; i++) {
-  		var item = g_grid_data[i]
-  		for (var j = 0; j < item.length; j++) {
-  			if (item[j]) {
-  				drawGrid(item[j])
-  			}
-  		}
-  	}
+    for (var i = 0; i < g_grid_data.length; i++) {
+      var item = g_grid_data[i]
+      for (var j = 0; j < item.length; j++) {
+        if (item[j]) {
+          drawGrid(item[j]);
+        }
+      }
+    }
   }
 
   /**
    * 绘制单个格子
    */
   function drawGrid(grid) {
-  	if(grid.shape == 'rectangle') {
-			drawRect(grid.x, grid.y, grid.color);
-		} else {
-			drawCircle(grid.x, grid.y, grid.color);
-		}
+    if(grid.shape == 'rectangle') {
+      drawRect(grid.x, grid.y, grid.color);
+    } else {
+      drawCircle(grid.x, grid.y, grid.color);
+    }
   }
 
 
@@ -257,6 +254,7 @@ $(document).ready(function() {
       g_row = $(".siser_row").val();
       g_ctx_coord.cleanRect(0, 0, g_canvas.width, g_canvas.height);
       drawCanvasCoord(g_col, g_row);
+      resetGridData();
     } else {
       return false;
     }
@@ -278,10 +276,10 @@ $(document).ready(function() {
    * @param {Object} shape 形状
    */
   function Grid(x, y, color, shape) {
-  	this.x = x
-  	this.y = y
-  	this.color = color
-  	this.shape = shape
+    this.x = x
+    this.y = y
+    this.color = color
+    this.shape = shape
   }
 
 
